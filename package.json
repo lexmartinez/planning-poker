@@ -7,7 +7,8 @@
         "start-srv": "parcel ./src/index.html -d build/",
         "start-app": "ELECTRON_START_URL=http://localhost:1234 electron .",
         "start": "concurrently --kill-others \"npm run start-srv\" \"npm run start-app\"",
-        "build": "parcel build ./src/index.html -d build/ --public-url ./",
+        "clean": "rm -rf build/ && rm -rf dist/",
+        "build": "npm run clean && parcel build ./src/index.html -d build/ --public-url ./",
         "dist": "npm run build && electron-builder",
         "postinstall": "electron-builder install-app-deps"
     },
