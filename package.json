@@ -4,41 +4,21 @@
     "description": "Planning Poker Desktop application built with Electron, React & Typescript",
     "main": "main.js",
     "scripts": {
-        "dev": "parcel ./src/index.html -d build/",
-        "start-dev": "ELECTRON_START_URL=http://localhost:1234 electron .",
-        "start": "electron .",
+        "start-srv": "parcel ./src/index.html -d build/",
+        "start-app": "ELECTRON_START_URL=http://localhost:1234 electron .",
+        "start": "concurrently --kill-others \"npm run start-srv\" \"npm run start-app\"",
         "build": "parcel build ./src/index.html -d build/ --public-url ./",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder",
-        "postinstall": "electron-builder install-app-deps",
-        "test": "jest",
-        "test:watch": "jest --watch"
+        "dist": "npm run build && electron-builder",
+        "postinstall": "electron-builder install-app-deps"
     },
     "build": {
-        "appId": "parcel.reactjs.electron",
+        "appId": "lexmartinez.planning-poker",
         "mac": {
-            "category": "your.app.category.type"
+            "category": "public.app-category.developer-tools"
         },
         "files": [
             "main.js",
             "build/*"
-        ]
-    },
-    "jest": {
-        "setupFiles": [
-            "<rootDir>/config/test-shim.js",
-            "<rootDir>/config/test-setup.js"
-        ],
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ],
-        "transform": {
-            "^.+\\.(ts|tsx)$": "<rootDir>/config/test-preprocessor.js"
-        },
-        "testMatch": [
-            "**/__tests__/*.(test|spec).(ts|tsx|js)"
         ]
     },
     "keywords": [
@@ -50,12 +30,21 @@
         "desktop-app"
     ],
     "author": "Lex Martinez<lex0316@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lexmartinez/planning-poker.git"
+    },
     "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lexmartinez/planning-poker/issues"
+    },
+    "homepage": "https://github.com/lexmartinez/planning-poker.git",
     "dependencies": {
         "react": "^16.3.0",
         "react-dom": "^16.3.0"
     },
     "devDependencies": {
+        "concurrently": "^3.5.1",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
         "electron": "~1.7.8",
@@ -67,12 +56,9 @@
         "@types/react-dom": "^16.0.4",
         "enzyme": "^3.3.0",
         "enzyme-adapter-react-16": "^1.1.1",
-        "jest": "^22.4.3",
         "parcel-bundler": "^1.7.0",
         "parcel-plugin-typescript": "^0.7.0",
-        "prettier": "^1.11.1",
         "react-test-renderer": "^16.3.0",
-        "ts-jest": "^22.4.2",
         "tslint": "^5.9.1",
         "tslint-config-airbnb": "^5.8.0",
         "tslint-config-prettier": "^1.10.0",

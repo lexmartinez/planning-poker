@@ -18,22 +18,31 @@ $ cd planning-poker
 # install the dependencies
 $ npm install
 
-# run the app on develop
-$ npm run dev
+# run the app on develop mode
+$ npm start
 ```
 
 ## Table of Contents
 
-* [Dependencies](#dependencies)
 * [Development](#development)
 * [Packaging](#packaging)
 * [License](#license)
 
-### Dependencies
-
 ### Development
 
+ Once you have installed all dependencies you can now start developing with:
+
+* `npm start` or `yarn start`
+
+ It will start a local server with the React app and the Electron application on development mode, also you can check just the webapp directly on the browser at  [http://localhost:1234](http://localhost:1234).
+
 ### Packaging
+
+To bundle code in production mode, run the command:
+
+* `npm run dist` or `yarn dist`
+
+> The default output directory is `/dist`
 
 ### License
 
