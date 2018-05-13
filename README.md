@@ -38,11 +38,9 @@ $ npm start
 
 ### Packaging
 
-To bundle code in production mode, run the command:
+To bundle code in production mode, run the command bellow, the default output directory is `/dist`
 
 * `npm run dist` or `yarn dist`
-
-> The default output directory is `/dist`
 
 ### License
 
