@@ -7,15 +7,16 @@ if (process.env.ELECTRON_START_URL) {
   require('electron-reload')(__dirname)
 }
 
-let mainWindow
+let mainWindow = undefined
 
 const createWindow = () => {
-
-    let mainWindow = new BrowserWindow({
-        height: 600,
+    const {width, height} = electron.screen.getPrimaryDisplay().size
+    mainWindow = new BrowserWindow({
+        height: height * 0.8,
         useContentSize: true,
-        width: 900,
+        width: width * 0.8,
         titleBarStyle: 'hidden',
+        frame: false,
         maximizable: false
       })
 
@@ -35,14 +36,14 @@ const createWindow = () => {
 
 app.on('ready', createWindow)
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit()
     }
 });
 
-app.on('activate', function () {
-    if (mainWindow === undefined) {
+app.on('activate', () => {
+    if (!mainWindow) {
         createWindow()
     }
 });
