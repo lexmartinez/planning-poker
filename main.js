@@ -19,7 +19,7 @@ const createWindow = () => {
         titleBarStyle: 'hidden',
         frame: false,
         maximizable: false,
-        backgroundColor: '#2a76bd'
+        backgroundColor: '#ffffff'
       })
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
