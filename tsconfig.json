@@ -3,6 +3,12 @@
     "target": "es5",
     "module": "commonjs",
     "strict": true,
-    "jsx": "react"
+    "jsx": "react",
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   }
 }

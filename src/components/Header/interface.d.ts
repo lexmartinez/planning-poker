@@ -1,0 +1,3 @@
+interface Header {
+    user?: any
+}

@@ -5,6 +5,7 @@ const url = require('url');
 
 if (process.env.ELECTRON_START_URL) {
   require('electron-reload')(__dirname)
+  require('electron-debug')({showDevTools: 'undocked'});
 }
 
 let mainWindow = undefined
@@ -17,7 +18,8 @@ const createWindow = () => {
         width: width * 0.8,
         titleBarStyle: 'hidden',
         frame: false,
-        maximizable: false
+        maximizable: false,
+        backgroundColor: '#2f84d3'
       })
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
