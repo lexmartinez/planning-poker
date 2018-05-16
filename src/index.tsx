@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import App from './components/App'
+import {Login} from './views'
 
 ReactDOM.render(
   <div className='container'>
-    <App />
+    <Login />
   </div>,
   document.getElementById('root')
 )
