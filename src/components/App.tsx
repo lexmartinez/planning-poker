@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Login from '../containers/Login'
+import Login from '../screens/Login'
 
 export default class App extends React.Component {
     render() {
