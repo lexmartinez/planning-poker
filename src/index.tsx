@@ -1,10 +1,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {Login} from './views'
+import { Provider } from 'react-redux'
+import store from './config/store'
+import AppRoutes from './config/routes'
 
 ReactDOM.render(
-  <div className='container'>
-    <Login />
-  </div>,
+  <Provider store={store}>
+    <AppRoutes/>
+  </Provider>,
   document.getElementById('root')
 )

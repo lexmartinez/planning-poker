@@ -1,7 +1,9 @@
 import * as React from 'react'
 import './style.css'
+import {connect} from 'react-redux'
+import {login} from '../../actions/login'
 
-export default class Login extends React.Component {
+class Login extends React.Component {
     render() {
         return (
             <div className={'wrapper'}>
@@ -23,3 +25,5 @@ export default class Login extends React.Component {
         )
     }
 }
+
+export default connect((state: any) => state)(Login)
