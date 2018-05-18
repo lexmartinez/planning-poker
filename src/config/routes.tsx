@@ -13,7 +13,6 @@ import Header from '../components/Header'
 
 const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => (
     <Route {...rest} render={(props: any) => {
-        console.log(props)
        return (
             isAuthenticated === true ? <Component {...props} />  : <Redirect to='/login' />
         )
@@ -24,7 +23,7 @@ export default () => {
    <BrowserRouter>
     <Switch>
         <Route exact={true} path={'/login'} component={Login}/>
-        <PrivateRoute isAuthenticated={false} path='/' component={Header} />
+        <PrivateRoute isAuthenticated={false} path={'/'} component={Header} />
     </Switch>
    </BrowserRouter>
  )
