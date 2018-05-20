@@ -6,5 +6,6 @@ interface LoginProps {
 interface LoginState {
     user: any,
     error: any,
-    isAuthenticated: boolean
+    isAuthenticated: boolean,
+    loading: boolean
 }
