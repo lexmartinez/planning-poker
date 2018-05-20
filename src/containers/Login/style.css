@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css?family=Kirang+Haerang');
+
+body {
+    height: 100vh;
+    background: #2f84d3; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #2f84d3, #2a76bd);
+    background: -moz-linear-gradient(right, #2f84d3, #2a76bd);
+    background: -o-linear-gradient(right, #2f84d3, #2a76bd);
+    background: linear-gradient(to left, #2f84d3, #2a76bd);
+    font-family: "Muli", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;    
+    color: #ffffff;
+    display:flex;
+    align-items:center;
+    justify-content:center;  
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.logo-title {
+    font-family: 'Kirang Haerang', cursive;
+    color: #ffffff;
+    font-size: 4em;
+}
+
+.logo-subtitle {
+    font-family: 'Kirang Haerang', cursive;
+    color: #97c1e9;
+    font-size: 2em;
+    margin-top: -1.7em;
+}
+
+.login-buttons {
+    margin-top: 100px;
+}
+
+.button {
+    color: #353535;
+    background: #fff;
+    border-radius: 5px;
+    height: 50px;
+    line-height: 50px;
+    padding: 15px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border: 1px solid #97c1e9;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.button-logo {
+   position: relative;
+   top: 6px;
+   right: 10px
+}
+
+.button:hover {
+    background: #f2f2f2;
+}

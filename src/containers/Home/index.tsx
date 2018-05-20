@@ -10,7 +10,7 @@ export default class Login extends React.Component {
     return (
             <div className={'wrapper'}>
                 <img src={require('../../assets/images/cards.svg')} width={'90'}/>
-                <h1 className={'logo-title'}>Planning Poker</h1>
+                <h1 className={'logo-title'}>Hoooooome</h1>
                 <h2 className={'logo-subtitle'}>Let's Estimate</h2>
                 <div className={'login-buttons'}>
                 {
