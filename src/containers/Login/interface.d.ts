@@ -1,5 +1,5 @@
 interface LoginProps {
-    login: any,
+    userInfo: any,
     history: any
 }
 

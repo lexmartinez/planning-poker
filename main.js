@@ -1,7 +1,10 @@
 const electron = require('electron')
-const {app, BrowserWindow} = electron
+const {app, BrowserWindow, ipcMain} = electron
 const path = require('path');
 const url = require('url');
+const electronOauth2 = require('electron-oauth2');
+const oauth = require('./src/config/oauth')
+const githubOAuth = electronOauth2(oauth.github, oauth.window);
 
 if (process.env.ELECTRON_START_URL) {
   require('electron-reload')(__dirname)
@@ -48,4 +51,13 @@ app.on('activate', () => {
     if (!mainWindow) {
         createWindow()
     }
+});
+
+ipcMain.on('github-oauth', (event, arg) => {
+    githubOAuth.getAccessToken({})
+      .then(token => {
+        event.sender.send('github-oauth-reply', token);
+      }, err => {
+        console.log('Error while getting token', err);
+      });
 });

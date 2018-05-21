@@ -43,6 +43,7 @@
     },
     "homepage": "https://github.com/lexmartinez/planning-poker.git",
     "dependencies": {
+        "electron-oauth2": "^3.0.0",
         "history": "^4.7.2",
         "i18next": "^11.3.2",
         "react": "^16.3.2",
