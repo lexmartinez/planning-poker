@@ -3,8 +3,24 @@ const {app, BrowserWindow, ipcMain} = electron
 const path = require('path');
 const url = require('url');
 const electronOauth2 = require('electron-oauth2');
-const oauth = require('./src/config/oauth')
-const githubOAuth = electronOauth2(oauth.github, oauth.window);
+const oauth = {
+    github: {
+      clientId: 'GITHUB_CLIENT_ID',
+      clientSecret: 'GITHUB_CLIENT_SECRET',
+      authorizationUrl: 'http://github.com/login/oauth/authorize',
+      tokenUrl: 'https://github.com/login/oauth/access_token',
+      useBasicAuthorizationHeader: false,
+      redirectUri: 'http://localhost'
+    }
+}
+const windowParams = {
+    alwaysOnTop: true,
+    autoHideMenuBar: true,
+    webPreferences: {
+      nodeIntegration: false
+    }
+};
+const githubOAuth = electronOauth2(oauth.github, windowParams);
 
 if (process.env.ELECTRON_START_URL) {
   require('electron-reload')(__dirname)
@@ -37,6 +53,7 @@ const createWindow = () => {
         mainWindow = undefined
     })
 
+    mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', createWindow)
