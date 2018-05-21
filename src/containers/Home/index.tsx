@@ -3,15 +3,14 @@ import './style.css'
 
 export default class Login extends React.Component {
 
+  componentDidMount () {
+    document.body.classList.add('home')
+  }
   render () {
-    const login = () => {
-      console.log('a')
-    }
     return (
             <div className={'wrapper'}>
                 <img src={require('../../assets/images/cards.svg')} width={'90'}/>
-                <h1 className={'logo-title'}>Hoooooome</h1>
-                <h2 className={'logo-subtitle'}>Let's Estimate</h2>
+                <h1>Hoooooome</h1>
             </div>
     )
   }

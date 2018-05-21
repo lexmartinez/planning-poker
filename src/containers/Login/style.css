@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Kirang+Haerang');
 
-body {
+body.login {
     height: 100vh;
     background: #2f84d3; /* fallback for old browsers */
     background: -webkit-linear-gradient(right, #2f84d3, #2a76bd);

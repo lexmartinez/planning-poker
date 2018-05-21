@@ -14,6 +14,10 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     this.login = this.login.bind(this)
   }
 
+  componentDidMount () {
+    document.body.classList.add('login')
+  }
+
   componentWillReceiveProps (nextProps: any) {
     if ((nextProps.isAuthenticated && nextProps.user) || nextProps.error) {
       this.setState({
@@ -27,6 +31,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
 
   componentDidUpdate () {
     if (this.state.isAuthenticated) {
+      document.body.classList.remove('login')
       this.props.history.push('/')
     }
   }
