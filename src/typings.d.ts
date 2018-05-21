@@ -1,3 +1,4 @@
+declare module 'i18next'
 declare module 'react-redux'
 declare module 'react-router'
 declare module 'redux-logger'

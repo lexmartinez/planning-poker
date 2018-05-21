@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
+import i18n from '../../config/i18n'
 export default class Login extends React.Component<LoginProps, LoginState> {
 
   constructor (props: LoginProps) {
@@ -61,7 +62,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
                 }
                   <a href={'#'} className={'button'} onClick={this.login}>
                       <img className={'button-logo'} src={require('../../assets/images/github-logo.svg')}
-                            width={'24'}/> Login with GitHub</a>
+                            width={'24'}/> {i18n.t('login.logIn')} GitHub</a>
                </div>
             }
             </div>
