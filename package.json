@@ -28,7 +28,9 @@
         "parcel",
         "electron",
         "planning-poker",
-        "desktop-app"
+        "desktop-app",
+        "redux",
+        "i18n"
     ],
     "author": "Lex Martinez<lex0316@gmail.com>",
     "repository": {
