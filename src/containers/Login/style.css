@@ -16,28 +16,28 @@ body.login {
     justify-content:center;  
 }
 
-.wrapper {
+body.login .wrapper {
     text-align: center;
 }
 
-.logo-title {
+body.login .logo-title {
     font-family: 'Kirang Haerang', cursive;
     color: #ffffff;
     font-size: 4em;
 }
 
-.logo-subtitle {
+body.login .logo-subtitle {
     font-family: 'Kirang Haerang', cursive;
     color: #97c1e9;
     font-size: 2em;
     margin-top: -1.7em;
 }
 
-.login-buttons {
+body.login .login-buttons {
     margin-top: 100px;
 }
 
-.button {
+body.login .button {
     color: #353535;
     background: #fff;
     border-radius: 5px;
@@ -51,12 +51,12 @@ body.login {
     text-decoration: none;
 }
 
-.button-logo {
+body.login .button-logo {
    position: relative;
    top: 6px;
    right: 10px
 }
 
-.button:hover {
+body.login .button:hover {
     background: #f2f2f2;
 }
