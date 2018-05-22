@@ -36,6 +36,10 @@ $ npm start
 
  It will start a local server with the React app and the Electron application on development mode, also you can check just the webapp directly on the browser at  [http://localhost:1234](http://localhost:1234).
 
+#### OAuth Login
+
+The App uses GitHub as OAuth provider, so in order to develop and bundle the applications you must [create an GitHub oauth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) and include the given `CLIENT_ID` and `CLIENT_SECRET` on `./src/config/oauth.js`
+
 ### Packaging
 
 To bundle code in production mode, run the command bellow, the default output directory is `/dist`

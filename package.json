@@ -20,6 +20,7 @@
         "files": [
             "main.js",
             "preload.js",
+            "src/config/oauth.js",
             "build/*"
         ]
     },
