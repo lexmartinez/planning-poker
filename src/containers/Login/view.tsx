@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
+import './style.css'
+
 export default class Login extends React.Component<LoginProps, LoginState> {
 
   constructor (props: LoginProps) {
