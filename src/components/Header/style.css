@@ -1,6 +1,31 @@
 .navbar {
     font-family: 'Muli',Helvetica,Arial,sans-serif;
-    background: #d32f2f;
+    background: #f5f5f5;
     width: 100vw;
     height: 60px;
+    border: 1px solid #dcdcdf;
+}
+
+img.avatar {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-style: none;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #ededef;
+}
+
+.avatar-container {
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    display: flex;
+}
+
+.avatar-info {
+    margin-left: 10px;
+    font-family: "Muli", sans-serif;
+    margin-top: 10px;
+    color: #515261
 }

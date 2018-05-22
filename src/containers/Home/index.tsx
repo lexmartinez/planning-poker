@@ -1,19 +1,16 @@
 import * as React from 'react'
-import { Header } from '../../components'
+import { connect } from 'react-redux'
+import Home from './view'
 import './style.css'
 
-export default class Login extends React.Component {
-
-  componentDidMount () {
-    document.body.classList.add('home')
-  }
-  render () {
-    return (
-            <div className={'wrapper'}>
-            <Header/>
-                <img src={require('../../assets/images/cards.svg')} width={'90'}/>
-                <h1>Hoooooome</h1>
-            </div>
-    )
-  }
+const mapStateToProps = (state: any) => {
+  return ({
+    ...state.authReducer
+  })
 }
+
+const mapDispatchToProps = (dispatch: any) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

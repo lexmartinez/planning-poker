@@ -1,10 +1,6 @@
 body.home {
     height: 100vh;
-    background: #fefefe !important; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #fefefe, #fff) !important;
-    background: -moz-linear-gradient(right, #fefefe, #fff) !important;
-    background: -o-linear-gradient(right, #fefefe, #fff) !important;
-    background: linear-gradient(to left, #fefefe, #fff) !important;
+    background: #f5f5f5 !important; /* fallback for old browsers */
     font-family: "Muli", sans-serif !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;  
