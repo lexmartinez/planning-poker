@@ -38,7 +38,11 @@ const createWindow = () => {
         titleBarStyle: 'hidden',
         frame: false,
         maximizable: false,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        webPreferences: {
+            nodeIntegration: false,
+            preload: __dirname + '/preload.js'
+        }
       })
 
     const startUrl = process.env.ELECTRON_START_URL || url.format({
@@ -52,8 +56,6 @@ const createWindow = () => {
     mainWindow.on('closed', () => {
         mainWindow = undefined
     })
-
-    mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', createWindow)

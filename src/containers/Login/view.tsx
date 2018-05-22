@@ -1,7 +1,6 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
-const electron = window.require('electron')
 export default class Login extends React.Component<LoginProps, LoginState> {
 
   constructor (props: LoginProps) {
@@ -18,8 +17,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
 
   componentDidMount () {
     document.body.classList.add('login')
-
-    electron.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
+    window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
       this.setState({ loading: true, error: undefined })
       this.props.userInfo(access_token)
     })
@@ -44,7 +42,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   login () {
-    electron.ipcRenderer.send('github-oauth', 'getToken')
+    window.ipcRenderer.send('github-oauth', 'getToken')
   }
 
   render () {

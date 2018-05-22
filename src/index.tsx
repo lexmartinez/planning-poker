@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import createHistory from 'history/createBrowserHistory'
+import createHashHistory from 'history/createHashHistory'
 import { Route, Switch } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
 import { Login, Home } from './containers'
@@ -11,7 +11,9 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
 
-const history = createHistory()
+const history = createHashHistory({
+  hashType: 'slash'
+})
 const middleware = routerMiddleware(history)
 const store = createStore(
   combineReducers({
