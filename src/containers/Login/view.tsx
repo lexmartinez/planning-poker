@@ -16,11 +16,18 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   componentDidMount () {
-    document.body.classList.add('login')
     window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
       this.setState({ loading: true, error: undefined })
+      window.localStorage.setItem('OAUTH_TOKEN', access_token)
       this.props.userInfo(access_token)
     })
+
+    const token = window.localStorage.getItem('OAUTH_TOKEN')
+    if (token && token !== '') {
+      this.props.userInfo(token)
+    } else {
+      document.body.classList.add('login')
+    }
   }
 
   componentWillReceiveProps (nextProps: any) {
@@ -46,6 +53,10 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   render () {
+    const token = window.localStorage.getItem('OAUTH_TOKEN')
+    if (token && token !== '') {
+      return null
+    }
     return (
         <div className={'wrapper'}>
             <img src={require('../../assets/images/cards.svg')} width={'90'} />
