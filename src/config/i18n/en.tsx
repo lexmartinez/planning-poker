@@ -1,6 +1,9 @@
 const en = {
   login: {
     'logIn': 'Login with'
+  },
+  home: {
+    'hello': 'Hello'
   }
 }
 

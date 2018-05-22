@@ -18,14 +18,15 @@ img.avatar {
 
 .avatar-container {
     position: absolute;
-    right: 40px;
+    right: 50px;
     top: 10px;
     display: flex;
 }
 
 .avatar-info {
-    margin-left: 10px;
+    margin-left: 13px;
     font-family: "Muli", sans-serif;
-    margin-top: 10px;
-    color: #515261
+    margin-top: 11px;
+    color: #515261;
+    font-weight: bold
 }
