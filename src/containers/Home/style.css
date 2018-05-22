@@ -1,6 +1,6 @@
 body.home {
     height: 100vh;
-    background: #f5f5f5 !important; /* fallback for old browsers */
+    background: #f5f5f5 !important;
     font-family: "Muli", sans-serif !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;  

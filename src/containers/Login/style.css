@@ -2,15 +2,11 @@
 
 body.login {
     height: 100vh;
-    background: #2f84d3; /* fallback for old browsers */
-    background: -webkit-linear-gradient(right, #2f84d3, #2a76bd);
-    background: -moz-linear-gradient(right, #2f84d3, #2a76bd);
-    background: -o-linear-gradient(right, #2f84d3, #2a76bd);
-    background: linear-gradient(to left, #2f84d3, #2a76bd);
+    background: #515261 !important;
     font-family: "Muli", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;    
-    color: #ffffff;
+    color: #515261;
     display:flex;
     align-items:center;
     justify-content:center;  
@@ -18,17 +14,22 @@ body.login {
 
 body.login .wrapper {
     text-align: center;
+    background: #f5f5f5;
+    width: 55vw;
+    height: 75vh;
+    box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.53);
+    padding-top: 25vh;
 }
 
 body.login .logo-title {
     font-family: 'Kirang Haerang', cursive;
-    color: #ffffff;
+    color: #515261;
     font-size: 4em;
 }
 
 body.login .logo-subtitle {
     font-family: 'Kirang Haerang', cursive;
-    color: #97c1e9;
+    color: #50548d;
     font-size: 2em;
     margin-top: -1.7em;
 }
@@ -38,17 +39,17 @@ body.login .login-buttons {
 }
 
 body.login .button {
-    color: #353535;
-    background: #fff;
+    color: #fff;
+    background: #515261;
     border-radius: 5px;
     height: 50px;
     line-height: 50px;
     padding: 15px;
     padding-left: 50px;
     padding-right: 50px;
-    border: 1px solid #97c1e9;
     font-weight: bold;
     text-decoration: none;
+    box-shadow: 1px 2px 5px 0px rgba(24,24,24,0.12);
 }
 
 body.login .button-logo {
@@ -58,5 +59,5 @@ body.login .button-logo {
 }
 
 body.login .button:hover {
-    background: #f2f2f2;
+    background: #38383f;
 }

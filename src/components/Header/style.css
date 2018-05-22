@@ -32,9 +32,15 @@ img.avatar {
 }
 
 .settings-btn {
-    margin-left: 20px;
+    margin-left: 4px;
     height: 40px;
     color: #515261;
+    width: 30px;
+    text-align: center
+}
+
+.settings-btn:hover {
+    color: #50548d;
 }
 
 .settings-btn i{
