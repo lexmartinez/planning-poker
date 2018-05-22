@@ -18,7 +18,7 @@ img.avatar {
 
 .avatar-container {
     position: absolute;
-    right: 50px;
+    right: 30px;
     top: 10px;
     display: flex;
 }
@@ -30,3 +30,44 @@ img.avatar {
     color: #515261;
     font-weight: bold
 }
+
+.settings-btn {
+    margin-left: 20px;
+    height: 40px;
+    color: #515261;
+}
+
+.settings-btn i{
+    line-height: 40px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 45px;
+    width: 200px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border: 1px solid #dcdcdf;
+    z-index: 1;
+    box-shadow: 1px 2px 5px 0px rgba(81,82,97,0.09);
+}
+
+.dropdown-content.open {
+    opacity: 1;
+}
+
+.dropdown-content a {
+    color: #515261;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}

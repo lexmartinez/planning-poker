@@ -1,13 +1,49 @@
 import * as React from 'react'
 import i18n from '../../config/i18n'
 import './style.css'
-export default ({ user }: Header) => {
-  return (
+
+export default class Header extends React.Component<HeaderProps, HeaderState> {
+
+  constructor (props: HeaderProps) {
+    super(props)
+    this.state = {
+      showMenu: false
+    }
+    this.showMenu = this.showMenu.bind(this)
+    this.closeMenu = this.closeMenu.bind(this)
+  }
+
+  showMenu () {
+    this.setState({ showMenu: true }, () => {
+      document.addEventListener('click', this.closeMenu)
+    })
+  }
+
+  closeMenu () {
+    this.setState({ showMenu: false }, () => {
+      document.removeEventListener('click', this.closeMenu)
+    })
+  }
+  render () {
+    const { user } = this.props
+    return (
       <div className={'navbar'}>
           <div className={'avatar-container'}>
             <img src={user.avatar_url} className={'avatar'}/>
             <p className={'avatar-info'}>{i18n.t('home.hello')}, {user.name}</p>
+            <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
+            <div className={'dropdown'}>
+              {
+              this.state.showMenu ?
+                <div className={'dropdown-content open'}>
+                  <a href="#">About this App</a>
+                  <a href="#">Language <b>en</b>/es</a>
+                  <a href="#">Logout</a>
+                </div> : undefined
+              }
+          </div>
           </div>
       </div>
-  )
+    )
+  }
 }
