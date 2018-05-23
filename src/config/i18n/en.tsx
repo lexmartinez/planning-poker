@@ -5,7 +5,11 @@ const en = {
   home: {
     'hello': 'Hello',
     'logout': 'Log Out',
-    'about': 'About'
+    'about': 'About',
+    lang: {
+      'label': 'Language',
+      'target': 'es'
+    }
   }
 }
 

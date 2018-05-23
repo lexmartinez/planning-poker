@@ -28,6 +28,41 @@ const about = () => {
        })
 }
 
+const renderMenu = () => {
+    const menu = electron.Menu.buildFromTemplate([
+      {
+       label: 'About',
+       submenu: [
+         {
+           label: 'About Planify',
+           click: about
+        },
+        {
+          type:'separator'
+        },
+        /*{
+          label: 'Settings...',
+          click: () => about,
+          accelerator: 'CommandOrControl+.'
+        },{
+          type:'separator'
+        },*/
+        {
+          label: 'Hide Planify',
+          click: app.hide,
+          accelerator: 'CommandOrControl+H'
+        },
+        {
+          label: 'Quit Planify',
+          role: 'quit',
+          accelerator: 'CommandOrControl+Q'
+        }
+       ]
+      }
+    ])
+    electron.Menu.setApplicationMenu(menu)
+}
+
 const createWindow = () => {
     const {width, height} = electron.screen.getPrimaryDisplay().size
     mainWindow = new BrowserWindow({
@@ -50,6 +85,7 @@ const createWindow = () => {
           slashes: true
         });
 
+    renderMenu();
     mainWindow.loadURL(startUrl)
 
     mainWindow.on('closed', () => {
