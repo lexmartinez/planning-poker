@@ -7,8 +7,9 @@ const en = {
     'logout': 'Log Out',
     'about': 'About',
     lang: {
-      'label': 'Language',
-      'target': 'es'
+      'label': 'Switch Language to',
+      'target': 'es',
+      'targetName': 'Spanish'
     }
   }
 }

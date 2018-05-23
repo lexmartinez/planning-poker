@@ -64,7 +64,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
         <div className={'wrapper'}>
             <img src={require('../../assets/images/cards.svg')} width={'90'} />
             <h1 className={'logo-title'}>{APP_NAME}</h1>
-            <h2 className={'logo-subtitle'}>A Planning Poker® Tool</h2>
+            <h2 className={'logo-subtitle'}>A Planning Poker Tool</h2>
             {
                 this.state.error ? <p>{`${this.state.error}`}</p> : undefined
             }

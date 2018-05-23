@@ -7,8 +7,9 @@ const es = {
     'logout': 'Cerrar Sesión',
     'about': 'Acerca de',
     lang: {
-      'label': 'Idioma',
-      'target': 'en'
+      'label': 'Cambiar Idioma a',
+      'target': 'en',
+      'targetName': 'Inglés'
     }
   }
 }

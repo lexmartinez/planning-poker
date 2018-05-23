@@ -50,7 +50,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
               this.state.showMenu ?
                 <div className={'dropdown-content open'}>
                   <a onClick={this.about}>{i18n.t('home.about')} {APP_NAME}</a>
-                  <a>{i18n.t('home.lang.label')} <b>{i18n.language}</b> / {i18n.t('home.lang.target')}</a>
+                  <a>{i18n.t('home.lang.label')} <b>{i18n.t('home.lang.targetName')}</b></a>
                   <a onClick={this.logout}>{i18n.t('home.logout')}</a>
                 </div> : undefined
               }
