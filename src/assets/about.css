@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+body {
+    background: #f5f5f5;
+}
+
+* {
+    font-family: "Muli", sans-serif !important;
+}
+
+.logo img{
+    height: 120px !important;
+    margin-left: 40px;
+    padding-bottom: 20px;
+}
+
+.title {
+    color: #515261;
+    font-size: 2.4em;
+}

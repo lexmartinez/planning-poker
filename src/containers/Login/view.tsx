@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
+import { OAUTH_TOKEN, APP_NAME } from '../../config/constants'
 import './style.css'
 
 export default class Login extends React.Component<LoginProps, LoginState> {
@@ -20,11 +21,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   componentDidMount () {
     window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
       this.setState({ loading: true, error: undefined })
-      window.localStorage.setItem('OAUTH_TOKEN', access_token)
+      window.localStorage.setItem(OAUTH_TOKEN, access_token)
       this.props.userInfo(access_token)
     })
 
-    const token = window.localStorage.getItem('OAUTH_TOKEN')
+    const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
       this.props.userInfo(token)
     } else {
@@ -55,15 +56,15 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   render () {
-    const token = window.localStorage.getItem('OAUTH_TOKEN')
+    const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
       return null
     }
     return (
         <div className={'wrapper'}>
             <img src={require('../../assets/images/cards.svg')} width={'90'} />
-            <h1 className={'logo-title'}>Planning Poker</h1>
-            <h2 className={'logo-subtitle'}>Let's Estimate</h2>
+            <h1 className={'logo-title'}>{APP_NAME}</h1>
+            <h2 className={'logo-subtitle'}>A Planning Poker® Tool</h2>
             {
                 this.state.error ? <p>{`${this.state.error}`}</p> : undefined
             }

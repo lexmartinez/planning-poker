@@ -24,14 +24,15 @@ body.login .wrapper {
 body.login .logo-title {
     font-family: 'Kirang Haerang', cursive;
     color: #515261;
-    font-size: 4em;
+    font-size: 4.2em;
+    letter-spacing: 4px;
 }
 
 body.login .logo-subtitle {
     font-family: 'Kirang Haerang', cursive;
     color: #50548d;
     font-size: 2em;
-    margin-top: -1.7em;
+    margin-top: -1.9em;
 }
 
 body.login .login-buttons {

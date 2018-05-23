@@ -1,4 +1,5 @@
 interface HeaderProps {
+    history: any,
     user?: any
 }
 

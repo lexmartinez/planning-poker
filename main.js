@@ -5,6 +5,7 @@ const url = require('url');
 const electronOauth2 = require('electron-oauth2');
 const oauth = require('./src/config/oauth.js');
 const githubOAuth = electronOauth2(oauth.github, oauth.window);
+const openAboutWindow = require('about-window').default;
 
 if (process.env.ELECTRON_START_URL) {
   require('electron-reload')(__dirname)
@@ -12,6 +13,20 @@ if (process.env.ELECTRON_START_URL) {
 }
 
 let mainWindow = undefined
+
+const about = () => {
+    openAboutWindow({
+        icon_path: path.join(__dirname, '/src/assets/images/cards.svg'),
+        copyright: 'Copyright (c) 2018 Lex Martinez - MIT License',
+        open_devtools: false,
+        css_path: path.join(__dirname, '/src/assets/about.css'),
+        product_name: 'Planify',
+        description: 'A Planning Poker® Tool',
+        win_options : {resizable: false, maximizable: false, titleBarStyle: 'hidden', frame: false},
+        bug_report_url: 'https://github.com/lexmartinez/planning-poker/issues',
+        homepage: 'https://github.com/lexmartinez/planning-poker',
+       })
+}
 
 const createWindow = () => {
     const {width, height} = electron.screen.getPrimaryDisplay().size
@@ -63,4 +78,8 @@ ipcMain.on('github-oauth', (event, arg) => {
       }, err => {
         console.log('Error while getting token', err);
       });
+});
+
+ipcMain.on('about-dialog', (event, arg) => {
+   about();
 });

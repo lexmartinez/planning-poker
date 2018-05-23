@@ -3,7 +3,9 @@ const es = {
     'logIn': 'Ingresar con'
   },
   home: {
-    'hello': 'Hola'
+    'hello': 'Hola',
+    'logout': 'Cerrar Sesión',
+    'about': 'Acerca de'
   }
 }
 

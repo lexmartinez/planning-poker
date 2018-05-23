@@ -1,8 +1,37 @@
 body.home {
     height: 100vh;
-    background: #f5f5f5 !important;
+    background: #eaeaeb !important;
     font-family: "Muli", sans-serif !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;  
     color: #353535 !important;
+}
+
+
+body.home .container {
+    height: 60vh;
+    margin-top: 14vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;  
+}
+
+body.home .card-home {
+    box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.07);
+    margin: 30px;
+    border-radius: 3px;
+    width: 370px;
+    height: 100%;
+}
+
+body.home .card-white {
+    background: #f5f5f5;
+}
+
+body.home .card-purple {
+    background: #50548d;
+}
+
+body.home .card-gray {
+    background: #515261;
 }
