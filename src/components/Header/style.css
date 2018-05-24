@@ -28,7 +28,8 @@ img.avatar {
     font-family: "Muli", sans-serif;
     margin-top: 11px;
     color: #515261;
-    font-weight: bold
+    font-weight: bold;
+    cursor: default;
 }
 
 .settings-btn {
