@@ -1,6 +1,6 @@
 import * as React from 'react'
 import i18n from '../../config/i18n'
-import { OAUTH_TOKEN, APP_NAME } from '../../config/constants'
+import { OAUTH_TOKEN, APP_NAME, USER_LANG } from '../../config/constants'
 import './style.css'
 
 export default class Header extends React.Component<HeaderProps, HeaderState> {
@@ -37,6 +37,13 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     window.ipcRenderer.send('about-dialog')
   }
 
+  setLanguage () {
+    const lang = i18n.t('home.lang.target')
+    i18n.changeLanguage(lang, (err: any, t: any) => {
+      if (err) return console.log('something went wrong loading', err)
+      window.localStorage.setItem(USER_LANG, lang)
+    })
+  }
   render () {
     const { user } = this.props
     return (
@@ -50,7 +57,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
               this.state.showMenu ?
                 <div className={'dropdown-content open'}>
                   <a onClick={this.about}>{i18n.t('home.about')} {APP_NAME}</a>
-                  <a>{i18n.t('home.lang.label')} <b>{i18n.t('home.lang.targetName')}</b></a>
+                  <a onClick={this.setLanguage}>{i18n.t('home.lang.label')} <b>{i18n.t('home.lang.targetName')}</b></a>
                   <a onClick={this.logout}>{i18n.t('home.logout')}</a>
                 </div> : undefined
               }

@@ -5,6 +5,7 @@ export default class Home extends React.Component <HomeProps> {
 
   componentDidMount () {
     document.body.classList.add('home')
+    document.body.classList.remove('login')
   }
   render () {
     const { name, email, avatar_url } = this.props.user

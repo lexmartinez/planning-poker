@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
-import { OAUTH_TOKEN, APP_NAME } from '../../config/constants'
+import { OAUTH_TOKEN, APP_NAME, USER_LANG } from '../../config/constants'
 import './style.css'
 
 export default class Login extends React.Component<LoginProps, LoginState> {
@@ -18,6 +18,17 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     this.login = this.login.bind(this)
   }
 
+  componentWillMount () {
+    const lang = window.localStorage.getItem(USER_LANG)
+    if (lang && lang !== '') {
+      i18n.changeLanguage(lang, (err: any, t: any) => {
+        if (err) return console.log('something went wrong loading', err)
+      })
+    } else {
+      window.localStorage.setItem(USER_LANG, i18n.language)
+    }
+  }
+
   componentDidMount () {
     window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
       this.setState({ loading: true, error: undefined })
@@ -31,6 +42,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     } else {
       document.body.classList.add('login')
     }
+
   }
 
   componentWillReceiveProps (nextProps: any) {
