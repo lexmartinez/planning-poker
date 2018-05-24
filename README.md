@@ -38,7 +38,7 @@ $ npm start
 
 #### OAuth Login
 
-The App uses GitHub as OAuth provider, so in order to develop and bundle the applications you must [create an GitHub oauth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) and include the given `CLIENT_ID` and `CLIENT_SECRET` on `./src/config/oauth.js`
+The App uses GitHub as OAuth provider, so in order to develop and bundle the applications you must [create a GitHub OAuth App](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/) and include the given `CLIENT_ID` and `CLIENT_SECRET` on `./src/config/oauth.js`
 
 ### Packaging
 
