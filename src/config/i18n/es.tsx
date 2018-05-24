@@ -10,6 +10,11 @@ const es = {
       'label': 'Cambiar Idioma a',
       'target': 'en',
       'targetName': 'Inglés'
+    },
+    join: {
+      'title': 'Unirse a una Sesión',
+      'subtitle': 'Ingrese el ID de la sesión planning',
+      'button': 'Unirse'
     }
   }
 }

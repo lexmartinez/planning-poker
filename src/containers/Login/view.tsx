@@ -14,7 +14,6 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       isAuthenticated: false,
       loading: false
     }
-
     this.login = this.login.bind(this)
   }
 
@@ -23,9 +22,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     if (lang && lang !== '') {
       i18n.changeLanguage(lang, (err: any, t: any) => {
         if (err) return console.log('something went wrong loading', err)
+        this.props.setLanguage(lang)
       })
     } else {
       window.localStorage.setItem(USER_LANG, i18n.language)
+      this.props.setLanguage(i18n.language)
     }
   }
 

@@ -4,5 +4,6 @@ interface HomeProps {
         avatar_url: string,
         name: string,
         email: string
-    }
+    },
+    setLanguage: any
 }

@@ -47,6 +47,7 @@
     },
     "homepage": "https://github.com/lexmartinez/planning-poker.git",
     "dependencies": {
+        "@oovui/react-feather-icons": "^0.1.1",
         "about-window": "^1.11.0",
         "electron-oauth2": "^3.0.0",
         "history": "^4.7.2",

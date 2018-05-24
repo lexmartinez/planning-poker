@@ -10,6 +10,11 @@ const en = {
       'label': 'Switch Language to',
       'target': 'es',
       'targetName': 'Spanish'
+    },
+    join: {
+      'title': 'Join a Session',
+      'subtitle': 'Please enter the planning session ID',
+      'button': 'Join'
     }
   }
 }

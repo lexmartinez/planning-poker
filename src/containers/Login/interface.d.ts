@@ -1,6 +1,7 @@
 interface LoginProps {
     userInfo: any,
-    history: any
+    history: any,
+    setLanguage: any
 }
 
 interface LoginState {
