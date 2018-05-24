@@ -15,7 +15,7 @@
     "build": {
         "appId": "lexmartinez.planning-poker",
         "productName": "Planify",
-        "copyright": "Copyright © 2018 Lex Martinez - MIT License",
+        "copyright": "Lex Martinez © 2018 - MIT License",
         "mac": {
             "category": "public.app-category.developer-tools"
         },
