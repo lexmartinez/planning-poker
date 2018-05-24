@@ -66,9 +66,9 @@ body.home .card-home .input {
     height: 35px;
     width: 100%;
     padding: 5px;
-    padding-left: 8px;
+    padding-left: 16px;
     border-radius: 2px;
-    border: 1px solid #737480;
+    border: 1px solid #b9b9bf;
 }
 
 body.home .button {
@@ -94,6 +94,15 @@ body.home .button-container {
     margin-top: 16px;
     width: 100%;
     margin-left: 56%
+}
+
+body.home .create-container {
+    width: 100%;
+    text-align: center
+}
+
+body.home .mrg-btm {
+    margin-bottom: 26px !important;
 }
 
 body.home .wrapper {

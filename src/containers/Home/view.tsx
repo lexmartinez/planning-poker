@@ -34,7 +34,18 @@ export default class Home extends React.Component <HomeProps> {
             <div>
               <Header user={{ name, email, avatar_url }} history={this.props.history} setLanguage={this.setLanguage}/>
               <div className={'container'}>
-                <div className={'card-home card-white'}>Create Planning Session</div>
+                <div className={'card-home card-white'}>
+                  <div>
+                      <div className={'card-image'}>
+                        <Icon type ={'airplay'} size={'130'} color={'#50548d'}/>
+                      </div>
+                      <div className={'create-container'}>
+                      <h1 className={'title'}>{i18n.t('home.create.title')}</h1>
+                      <h2 className={'subtitle mrg-btm'}>{i18n.t('home.create.subtitle')}</h2>
+                        <a className={'button'}>{i18n.t('home.create.button')}</a>
+                      </div>
+                  </div>
+                </div>
                 <div className={'card-home card-white'}>
                   <div>
                     <div className={'card-image'}>
@@ -42,7 +53,7 @@ export default class Home extends React.Component <HomeProps> {
                     </div>
                     <h1 className={'title'}>{i18n.t('home.join.title')}</h1>
                     <h2 className={'subtitle'}>{`${i18n.t('home.join.subtitle')} :`}</h2>
-                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX'} className={'input'}/>
+                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'} className={'input'}/>
                     <div className={'button-container'}>
                       <a className={'button'}>{i18n.t('home.join.button')}</a>
                     </div>

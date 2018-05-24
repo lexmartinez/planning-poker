@@ -15,6 +15,11 @@ const es = {
       'title': 'Unirse a una Sesión',
       'subtitle': 'Ingrese el ID de la sesión planning',
       'button': 'Unirse'
+    },
+    create: {
+      'title': 'Crear Sesión',
+      'subtitle': 'Carga tu backlog y estas listo para planear!',
+      'button': 'Crear Sesión'
     }
   }
 }

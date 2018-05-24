@@ -15,6 +15,11 @@ const en = {
       'title': 'Join a Session',
       'subtitle': 'Please enter the planning session ID',
       'button': 'Join'
+    },
+    create: {
+      'title': 'Create Session',
+      'subtitle': 'Just load your backlog and start planning!',
+      'button': 'Create Session'
     }
   }
 }
