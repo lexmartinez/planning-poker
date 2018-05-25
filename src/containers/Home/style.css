@@ -53,11 +53,13 @@ body.home .card-grey {
 body.home .card-home h1.title {
     font-size: 2em;
     color: #515261;
+    cursor: default;
 }
 
 body.home .card-home h2.subtitle {
     font-size: 0.9em;
     color: #515261;
+    cursor: default;
 }
 
 body.home .card-home .input {
