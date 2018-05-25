@@ -69,6 +69,7 @@ body.home .card-home .input {
     padding-left: 16px;
     border-radius: 2px;
     border: 1px solid #b9b9bf;
+    text-align: center
 }
 
 body.home .button {
@@ -93,7 +94,6 @@ body.home .button:hover {
 body.home .button-container {
     margin-top: 16px;
     width: 100%;
-    margin-left: 56%
 }
 
 body.home .create-container {

@@ -51,11 +51,13 @@ export default class Home extends React.Component <HomeProps> {
                     <div className={'card-image'}>
                       <Icon type ={'users'} size={'130'} color={'#50548d'}/>
                     </div>
+                    <div className={'create-container'}>
                     <h1 className={'title'}>{i18n.t('home.join.title')}</h1>
                     <h2 className={'subtitle'}>{`${i18n.t('home.join.subtitle')} :`}</h2>
                     <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'} className={'input'}/>
                     <div className={'button-container'}>
                       <a className={'button'}>{i18n.t('home.join.button')}</a>
+                    </div>
                     </div>
                   </div>
                 </div>
