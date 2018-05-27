@@ -1,4 +1,4 @@
-import service from '../services/github'
+import oauth from '../services/oauth'
 
 const authSuccess = (user: any) => ({
   type: 'AUTH_SUCCESS',
@@ -14,10 +14,17 @@ const authFail = (error: any) => ({
   }
 })
 
-export default function (user: string) {
+const getInfo = (authToken: string, provider = 'github') => {
+  if (provider === 'google') {
+    return oauth.googleInfo(authToken)
+  } else {
+    return oauth.githubInfo(authToken)
+  }
+}
+
+export default function (authToken: string, provider: string) {
   return (dispatch: any) => {
-    service
-      .userInfo(user)
+    getInfo(authToken, provider)
       .then((response: any) => response.json())
       .then((response: any) => (dispatch(authSuccess(response))))
       .catch((err: any) => dispatch(authFail(err)))

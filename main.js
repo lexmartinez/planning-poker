@@ -5,6 +5,7 @@ const url = require('url');
 const electronOauth2 = require('electron-oauth2');
 const oauth = require('./src/config/oauth.js');
 const githubOAuth = electronOauth2(oauth.github, oauth.window);
+const googleOAuth = electronOauth2(oauth.google, oauth.window);
 const openAboutWindow = require('about-window').default;
 
 if (process.env.ELECTRON_START_URL) {
@@ -114,6 +115,15 @@ ipcMain.on('github-oauth', (event, arg) => {
       }, err => {
         console.log('Error while getting token', err);
       });
+});
+
+ipcMain.on('google-oauth', (event, arg) => {
+  googleOAuth.getAccessToken({scope: oauth.google.scope})
+    .then(token => {
+      event.sender.send('google-oauth-reply', token);
+    }, err => {
+      console.log('Error while getting token', err);
+    });
 });
 
 ipcMain.on('about-dialog', (event, arg) => {

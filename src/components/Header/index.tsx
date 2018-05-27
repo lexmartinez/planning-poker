@@ -1,6 +1,6 @@
 import * as React from 'react'
 import i18n from '../../config/i18n'
-import { OAUTH_TOKEN, APP_NAME, USER_LANG } from '../../config/constants'
+import { OAUTH_TOKEN, OAUTH_PROVIDER, APP_NAME, USER_LANG } from '../../config/constants'
 import './style.css'
 
 export default class Header extends React.Component<HeaderProps, HeaderState> {
@@ -29,6 +29,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
 
   logout () {
     window.localStorage.removeItem(OAUTH_TOKEN)
+    window.localStorage.removeItem(OAUTH_PROVIDER)
     document.body.classList.remove('home')
     this.props.history.push('/login')
   }
@@ -42,7 +43,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     return (
       <div className={'navbar'}>
           <div className={'avatar-container'}>
-            <img src={user.avatar_url} className={'avatar'}/>
+            <img src={user.avatar_url || user.picture} className={'avatar'}/>
             <p className={'avatar-info'}>{i18n.t('home.hello')}, {user.name}</p>
             <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
             <div className={'dropdown'}>

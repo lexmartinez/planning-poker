@@ -12,8 +12,8 @@ const mapStateToProps = (state: any) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  userInfo: (authToken: string) => {
-    dispatch(userInfo(authToken))
+  userInfo: (authToken: string, provider: string) => {
+    dispatch(userInfo(authToken, provider))
   },
   setLanguage: (lang: string) => {
     dispatch(setLanguage(lang))

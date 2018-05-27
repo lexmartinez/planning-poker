@@ -7,7 +7,16 @@ module.exports = {
         useBasicAuthorizationHeader: false,
         redirectUri: 'http://localhost'
       },
-      window: {
+    google: {
+        clientId: 'GITHUB_CLIENT_ID',
+        clientSecret: 'GITHUB_CLIENT_SECRET',
+        authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
+        scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
+        tokenUrl: 'https://accounts.google.com/o/oauth2/token',
+        useBasicAuthorizationHeader: false,
+        redirectUri: 'http://localhost'
+      },
+    window: {
         alwaysOnTop: true,
         autoHideMenuBar: true,
         webPreferences: {

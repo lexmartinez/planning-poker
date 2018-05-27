@@ -3,7 +3,8 @@ interface HomeProps {
     user: {
         avatar_url: string,
         name: string,
-        email: string
+        email: string,
+        picture: string
     },
     setLanguage: any
 }

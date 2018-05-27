@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
-import { OAUTH_TOKEN, APP_NAME, USER_LANG } from '../../config/constants'
+import { OAUTH_TOKEN, OAUTH_PROVIDER, APP_NAME, USER_LANG } from '../../config/constants'
 import './style.css'
 
 export default class Login extends React.Component<LoginProps, LoginState> {
@@ -14,7 +14,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       isAuthenticated: false,
       loading: false
     }
-    this.login = this.login.bind(this)
+    this.github = this.github.bind(this)
+    this.setUserData = this.setUserData.bind(this)
   }
 
   componentWillMount () {
@@ -30,16 +31,25 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     }
   }
 
+  setUserData (accessToken: string, provider: string) {
+    this.setState({ loading: true, error: undefined })
+    window.localStorage.setItem(OAUTH_TOKEN, accessToken)
+    window.localStorage.setItem(OAUTH_PROVIDER, provider)
+    this.props.userInfo(accessToken, provider)
+  }
   componentDidMount () {
     window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
-      this.setState({ loading: true, error: undefined })
-      window.localStorage.setItem(OAUTH_TOKEN, access_token)
-      this.props.userInfo(access_token)
+      this.setUserData(access_token, 'github')
+    })
+
+    window.ipcRenderer.on('google-oauth-reply', (event: any, { access_token }: any) => {
+      this.setUserData(access_token, 'google')
     })
 
     const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
-      this.props.userInfo(token)
+      const provider = window.localStorage.getItem(OAUTH_PROVIDER)
+      this.props.userInfo(token, provider)
     } else {
       document.body.classList.add('login')
     }
@@ -64,8 +74,12 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     }
   }
 
-  login () {
+  github () {
     window.ipcRenderer.send('github-oauth', 'getToken')
+  }
+
+  google () {
+    window.ipcRenderer.send('google-oauth', 'getToken')
   }
 
   render () {
@@ -84,13 +98,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
             <div className={'login-buttons'}>
             { this.state.loading ? <Loading type={'puff'} width={60} height={60} fill={'#ffffff'} /> :
               <div>
-                {
-                    // <a href={'#'} className={'button'}>
-                    // <img className={'button-logo'} src={require('../../assets/images/google-logo.svg')}
-                    // width={'24'}/> Login with Google</a>
-                    // <br/><br/>
-                }
-                  <a href={'#'} className={'button'} onClick={this.login}>
+                  <a href={'#'} className={'button'} onClick={this.google}>
+                      <img className={'button-logo'} src={require('../../assets/images/google-logo.svg')}
+                            width={'24'}/> {i18n.t('login.logIn')} Google</a>
+                    <br/><br/>
+                  <a href={'#'} className={'button'} onClick={this.github}>
                       <img className={'button-logo'} src={require('../../assets/images/github-logo.svg')}
                             width={'24'}/> {i18n.t('login.logIn')} GitHub</a>
                </div>
