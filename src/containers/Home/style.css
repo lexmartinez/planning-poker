@@ -5,6 +5,7 @@ body.home {
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;  
     color: #353535 !important;
+    overflow: hidden;
 }
 
 input:focus,

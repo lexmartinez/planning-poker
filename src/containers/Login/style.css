@@ -10,6 +10,7 @@ body.login {
     display:flex;
     align-items:center;
     justify-content:center;  
+    overflow: hidden; 
 }
 
 body.login .wrapper {
