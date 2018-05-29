@@ -43,7 +43,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     return (
       <div className={'navbar'}>
           <div className={'avatar-container'}>
-            <img src={user.avatar_url || user.picture} className={'avatar'}/>
+            <img src={ user.avatar } className={'avatar'}/>
             <p className={'avatar-info'}>{i18n.t('home.hello')}, {user.name}</p>
             <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
             <div className={'dropdown'}>

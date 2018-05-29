@@ -1,10 +1,9 @@
 interface HomeProps {
     history: any,
     user: {
-        avatar_url: string,
+        avatar: string,
         name: string,
-        email: string,
-        picture: string
+        email: string
     },
     setLanguage: any
 }

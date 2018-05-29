@@ -29,10 +29,10 @@ export default class Home extends React.Component <HomeProps> {
   }
 
   render () {
-    const { name, email, avatar_url, picture } = this.props.user
+    const { name, email, avatar } = this.props.user
     return (
             <div>
-              <Header user={{ name, email, avatar_url, picture }} history={this.props.history}
+              <Header user={{ name, email, avatar }} history={this.props.history}
                 setLanguage={this.setLanguage}/>
               <div className={'container'}>
                 <div className={'card-home card-white'}>

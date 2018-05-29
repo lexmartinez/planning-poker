@@ -1,9 +1,9 @@
-import oauth from '../services/oauth'
+import { oauth, models } from '../services'
 
-const authSuccess = (user: any) => ({
+const authSuccess = (model: any) => ({
   type: 'AUTH_SUCCESS',
   payload: {
-    user
+    user: models.user(model)
   }
 })
 
@@ -22,7 +22,7 @@ const getInfo = (authToken: string, provider = 'github') => {
   }
 }
 
-export default function (authToken: string, provider: string) {
+export default (authToken: string, provider: string) => {
   return (dispatch: any) => {
     getInfo(authToken, provider)
       .then((response: any) => response.json())

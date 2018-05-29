@@ -1,7 +1,11 @@
 interface HeaderProps {
     history: any,
     setLanguage: any,
-    user?: any,
+    user: {
+        name: string,
+        email: string,
+        avatar: string
+    },
 }
 
 interface HeaderState {

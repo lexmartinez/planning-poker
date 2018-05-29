@@ -5,7 +5,7 @@ const setLanguage = (lang: any) => ({
   }
 })
 
-export default function (lang: string) {
+export default (lang: string) => {
   return (dispatch: any) => {
     dispatch(setLanguage(lang))
   }
