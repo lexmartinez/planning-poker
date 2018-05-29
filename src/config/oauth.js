@@ -8,8 +8,8 @@ module.exports = {
         redirectUri: 'http://localhost'
       },
     google: {
-        clientId: 'GITHUB_CLIENT_ID',
-        clientSecret: 'GITHUB_CLIENT_SECRET',
+        clientId: 'GOOGLE_CLIENT_ID',
+        clientSecret: 'GOOGLE_CLIENT_SECRET',
         authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
         scope: 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
         tokenUrl: 'https://accounts.google.com/o/oauth2/token',
