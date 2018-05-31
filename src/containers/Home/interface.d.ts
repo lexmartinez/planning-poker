@@ -7,3 +7,8 @@ interface HomeProps {
     },
     setLanguage: any
 }
+
+interface HomeState {
+    lang: string,
+    sessionId?: string
+}

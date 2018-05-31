@@ -4,14 +4,17 @@ import { USER_LANG } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 
-export default class Home extends React.Component <HomeProps> {
+export default class Home extends React.Component <HomeProps, HomeState> {
 
   constructor (props: HomeProps) {
     super(props)
     this.state = {
-      lang: i18n.language
+      lang: i18n.language,
+      sessionId: undefined
     }
     this.setLanguage = this.setLanguage.bind(this)
+    this.startSession = this.startSession.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount () {
@@ -26,6 +29,19 @@ export default class Home extends React.Component <HomeProps> {
       window.localStorage.setItem(USER_LANG, lang)
       this.props.setLanguage(lang)
     })
+  }
+
+  startSession () {
+    if (this.state.sessionId) {
+      this.props.history.push(`/session/${this.state.sessionId}`)
+    } else {
+      alert('error')
+    }
+  }
+
+  handleChange (event: any) {
+    console.log(event)
+    this.setState({ sessionId: event.target.value })
   }
 
   render () {
@@ -55,9 +71,10 @@ export default class Home extends React.Component <HomeProps> {
                     <div className={'create-container'}>
                     <h1 className={'title'}>{i18n.t('home.join.title')}</h1>
                     <h2 className={'subtitle'}>{`${i18n.t('home.join.subtitle')} :`}</h2>
-                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'} className={'input'}/>
+                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'} className={'input'}
+                      onChange={this.handleChange} />
                     <div className={'button-container'}>
-                      <a className={'button'}>{i18n.t('home.join.button')}</a>
+                      <a className={'button'} onClick={this.startSession}>{i18n.t('home.join.button')}</a>
                     </div>
                     </div>
                   </div>

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import createHashHistory from 'history/createHashHistory'
 import { Route, Switch } from 'react-router'
 import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { Login, Home } from './containers'
+import { Login, Home, Session } from './containers'
 import { PrivateRoute } from './components'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
@@ -29,6 +29,7 @@ ReactDOM.render(
       <Switch>
         <Route path={'/login'} component={Login} />
         <PrivateRoute exact path={'/'} component={Home} />
+        <PrivateRoute exact path={'/session/:id'} component={Session} />
       </Switch>
     </ConnectedRouter>
   </Provider>,
