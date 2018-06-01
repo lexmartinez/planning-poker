@@ -10,5 +10,6 @@ interface HomeProps {
 
 interface HomeState {
     lang: string,
-    sessionId?: string
+    sessionId?: string,
+    error: boolean
 }

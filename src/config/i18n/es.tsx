@@ -14,7 +14,8 @@ const es = {
     join: {
       'title': 'Unirse a una Sesión',
       'subtitle': 'Ingrese el ID de la sesión planning',
-      'button': 'Unirse'
+      'button': 'Unirse',
+      'error': 'Ingrese un ID de sesión válido'
     },
     create: {
       'title': 'Crear Sesión',

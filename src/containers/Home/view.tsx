@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Header } from '../../components'
-import { USER_LANG } from '../../config/constants'
+import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 
@@ -10,7 +10,8 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     super(props)
     this.state = {
       lang: i18n.language,
-      sessionId: undefined
+      sessionId: undefined,
+      error: false
     }
     this.setLanguage = this.setLanguage.bind(this)
     this.startSession = this.startSession.bind(this)
@@ -32,16 +33,15 @@ export default class Home extends React.Component <HomeProps, HomeState> {
   }
 
   startSession () {
-    if (this.state.sessionId) {
+    if (this.state.sessionId && SID_REGEX.test(this.state.sessionId)) {
       this.props.history.push(`/session/${this.state.sessionId}`)
     } else {
-      alert('error')
+      this.setState({ error : true })
     }
   }
 
   handleChange (event: any) {
-    console.log(event)
-    this.setState({ sessionId: event.target.value })
+    this.setState({ sessionId: event.target.value.toUpperCase(), error: false })
   }
 
   render () {
@@ -71,8 +71,14 @@ export default class Home extends React.Component <HomeProps, HomeState> {
                     <div className={'create-container'}>
                     <h1 className={'title'}>{i18n.t('home.join.title')}</h1>
                     <h2 className={'subtitle'}>{`${i18n.t('home.join.subtitle')} :`}</h2>
-                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'} className={'input'}
+                    <input type={'text'} placeholder={'XXXX-XXXX-XXXX-XXXX'}
+                      className={`input ${this.state.error ? 'error' : ''}`}
+                      value={this.state.sessionId || ''}
                       onChange={this.handleChange} />
+                      {
+                        this.state.error ?
+                        <p className={'error error-no-padding'}>{i18n.t('home.join.error')}</p> : undefined
+                      }
                     <div className={'button-container'}>
                       <a className={'button'} onClick={this.startSession}>{i18n.t('home.join.button')}</a>
                     </div>

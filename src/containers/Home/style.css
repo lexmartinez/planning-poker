@@ -115,3 +115,17 @@ body.home .wrapper {
 body.home .card-image {
     text-align: center
 }
+
+body.home .card-home .input.error {
+    border: 1px solid #5e1515;
+}
+
+body.home p.error {
+    font-size: 0.9em;
+    color: #990000;
+    cursor: default;
+}
+
+body.home p.error-no-padding {
+    margin-top: 1px
+}

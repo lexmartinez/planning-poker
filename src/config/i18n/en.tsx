@@ -14,7 +14,8 @@ const en = {
     join: {
       'title': 'Join a Session',
       'subtitle': 'Please enter the planning session ID',
-      'button': 'Join'
+      'button': 'Join',
+      'error': 'Enter a valid session ID'
     },
     create: {
       'title': 'Create Session',
