@@ -34,7 +34,7 @@ $ npm start
 
 * `npm start` or `yarn start`
 
- It will start a local server with the React app and the Electron application on development mode, also you can check just the webapp directly on the browser at  [http://localhost:1234](http://localhost:1234).
+ It will start a local server with the React app and the Electron application on development mode.
 
 #### OAuth Login
 
