@@ -3,7 +3,7 @@ import { Header } from '../../components'
 import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
-
+import Loading from 'react-loading-components'
 export default class Home extends React.Component <HomeProps, HomeState> {
 
   constructor (props: HomeProps) {
@@ -11,7 +11,8 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     this.state = {
       lang: i18n.language,
       sessionId: undefined,
-      error: false
+      error: false,
+      loading: false
     }
     this.setLanguage = this.setLanguage.bind(this)
     this.startSession = this.startSession.bind(this)
@@ -21,6 +22,17 @@ export default class Home extends React.Component <HomeProps, HomeState> {
   componentDidMount () {
     document.body.classList.add('home')
     document.body.classList.remove('login')
+
+    window.ipcRenderer.on('session-auth-reply', (event: any, { response }: any) => {
+      this.setState({ loading : false })
+      console.log('s-auth',response)
+      if (response) {
+        this.props.history.push(`/session/${this.state.sessionId}`)
+      } else {
+        this.setState({ error: true })
+      }
+    })
+
   }
 
   setLanguage () {
@@ -34,7 +46,12 @@ export default class Home extends React.Component <HomeProps, HomeState> {
 
   startSession () {
     if (this.state.sessionId && SID_REGEX.test(this.state.sessionId)) {
-      this.props.history.push(`/session/${this.state.sessionId}`)
+      const { email } = this.props.user
+      this.setState({ loading : true })
+      window.ipcRenderer.send('session-auth', {
+        sessionId: this.state.sessionId,
+        email
+      })
     } else {
       this.setState({ error : true })
     }
@@ -48,6 +65,12 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     const { name, email, avatar } = this.props.user
     return (
             <div>
+              {
+                this.state.loading ?
+                  <div className={'loading'}>
+                    <Loading type={'puff'} width={80} height={80} fill={'#50548d'} />
+                  </div> : undefined
+              }
               <Header user={{ name, email, avatar }} history={this.props.history}
                 setLanguage={this.setLanguage}/>
               <div className={'container'}>

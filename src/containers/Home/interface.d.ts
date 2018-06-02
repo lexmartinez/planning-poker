@@ -11,5 +11,6 @@ interface HomeProps {
 interface HomeState {
     lang: string,
     sessionId?: string,
-    error: boolean
+    error: boolean,
+    loading: boolean
 }

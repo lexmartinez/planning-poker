@@ -15,6 +15,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       loading: false
     }
     this.github = this.github.bind(this)
+    this.google = this.google.bind(this)
     this.setUserData = this.setUserData.bind(this)
   }
 
