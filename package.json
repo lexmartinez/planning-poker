@@ -21,8 +21,10 @@
         },
         "files": [
             "main.js",
-            "preload.js",
             "src/config/oauth.js",
+            "src/modules/*.js",
+            "src/assets/about.css",
+            "src/assets/images/cards.svg",
             "build/*"
         ]
     },
