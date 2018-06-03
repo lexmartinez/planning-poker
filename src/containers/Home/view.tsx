@@ -4,6 +4,7 @@ import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 import Loading from 'react-loading-components'
+import Utils from '../../utils'
 export default class Home extends React.Component <HomeProps, HomeState> {
 
   constructor (props: HomeProps) {
@@ -24,15 +25,21 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     document.body.classList.remove('login')
 
     window.ipcRenderer.on('session-auth-reply', (event: any, { response }: any) => {
-      this.setState({ loading : false })
+      this.props.setLoading(false)
       console.log('s-auth',response)
       if (response) {
         this.props.history.push(`/session/${this.state.sessionId}`)
       } else {
-        this.setState({ error: true })
+        this.props.setError(true)
       }
     })
+  }
 
+  componentWillReceiveProps (nextProps: any) {
+    this.setState({
+      error: nextProps.error,
+      loading: nextProps.loading
+    })
   }
 
   setLanguage () {
@@ -47,18 +54,21 @@ export default class Home extends React.Component <HomeProps, HomeState> {
   startSession () {
     if (this.state.sessionId && SID_REGEX.test(this.state.sessionId)) {
       const { email } = this.props.user
-      this.setState({ loading : true })
+      this.props.setLoading(true)
       window.ipcRenderer.send('session-auth', {
         sessionId: this.state.sessionId,
         email
       })
     } else {
-      this.setState({ error : true })
+      this.props.setError(true)
     }
   }
 
   handleChange (event: any) {
-    this.setState({ sessionId: event.target.value.toUpperCase(), error: false })
+    this.props.setError(false)
+    const text = event.target.value.toUpperCase()
+    const sessionId = Utils.format.sessionId(text.replace(/[^A-Za-z0-9]/g, ''))
+    this.setState({ sessionId })
   }
 
   render () {
