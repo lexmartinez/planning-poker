@@ -1,9 +1,8 @@
 import * as React from 'react'
-import { Header } from '../../components'
+import { Header, Loading } from '../../components'
 import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
-import Loading from 'react-loading-components'
 import Utils from '../../utils'
 export default class Home extends React.Component <HomeProps, HomeState> {
 
@@ -75,14 +74,9 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     const { name, email, avatar } = this.props.user
     return (
             <div>
-              {
-                this.state.loading ?
-                  <div className={'loading'}>
-                    <Loading type={'puff'} width={80} height={80} fill={'#50548d'} />
-                  </div> : undefined
-              }
+              {this.state.loading ? <Loading/> : undefined }
               <Header user={{ name, email, avatar }} history={this.props.history}
-                setLanguage={this.setLanguage}/>
+                setLanguage={this.setLanguage} logout={this.props.logout}/>
               <div className={'container'}>
                 <div className={'card-home card-white'}>
                   <div>

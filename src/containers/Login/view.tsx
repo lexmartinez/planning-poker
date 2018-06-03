@@ -1,7 +1,7 @@
 import * as React from 'react'
-import Loading from 'react-loading-components'
 import i18n from '../../config/i18n'
 import { OAUTH_TOKEN, OAUTH_PROVIDER, APP_NAME, USER_LANG } from '../../config/constants'
+import { Loading } from '../../components'
 import './style.css'
 
 export default class Login extends React.Component<LoginProps, LoginState> {
@@ -39,6 +39,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     window.localStorage.setItem(OAUTH_PROVIDER, provider)
     this.props.userInfo(accessToken, provider)
   }
+
   componentDidMount () {
     window.ipcRenderer.on('github-oauth-reply', (event: any, { access_token }: any) => {
       this.setUserData(access_token, 'github')
@@ -55,7 +56,6 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     } else {
       document.body.classList.add('login')
     }
-
   }
 
   componentWillReceiveProps (nextProps: any) {
@@ -87,18 +87,18 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   render () {
     const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
-      return null
+      document.body.classList.remove('login')
+      return <Loading/>
     }
+    document.body.classList.add('login')
     return (
         <div className={'wrapper'}>
+            {this.state.loading ? <Loading/> : undefined }
             <img src={require('../../assets/images/cards.svg')} width={'90'} />
             <h1 className={'logo-title'}>{APP_NAME}</h1>
             <h2 className={'logo-subtitle'}>A Planning Poker Tool</h2>
-            {
-                this.state.error ? <p>{`${this.state.error}`}</p> : undefined
-            }
+            { this.state.error ? <p>{`${this.state.error}`}</p> : undefined }
             <div className={'login-buttons'}>
-            { this.state.loading ? <Loading type={'puff'} width={60} height={60} fill={'#ffffff'} /> :
               <div>
                   <a href={'#'} className={'button'} onClick={this.google}>
                       <img className={'button-logo'} src={require('../../assets/images/google-logo.svg')}
@@ -107,8 +107,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
                   <a href={'#'} className={'button'} onClick={this.github}>
                       <img className={'button-logo'} src={require('../../assets/images/github-logo.svg')}
                             width={'24'}/> {i18n.t('login.logIn')} GitHub</a>
-               </div>
-            }
+              </div>
             </div>
         </div>
     )
