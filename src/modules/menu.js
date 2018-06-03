@@ -4,7 +4,6 @@ const path = require('path');
 const openAboutWindow = require('about-window').default;
 
 const about = () => {
-  console.log(__dirname)
   openAboutWindow({
       icon_path: path.join(__dirname, '../assets/images/cards.svg'),
       copyright: 'Copyright (c) 2018 Lex Martinez - MIT License',
