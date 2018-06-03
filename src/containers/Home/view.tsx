@@ -3,7 +3,7 @@ import { Header, Loading } from '../../components'
 import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
-import Utils from '../../utils'
+import { format } from '../../services'
 export default class Home extends React.Component <HomeProps, HomeState> {
 
   constructor (props: HomeProps) {
@@ -66,7 +66,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
   handleChange (event: any) {
     this.props.setError(false)
     const text = event.target.value.toUpperCase()
-    const sessionId = Utils.format.sessionId(text.replace(/[^A-Za-z0-9]/g, ''))
+    const sessionId = format.sessionId(text.replace(/[^A-Za-z0-9]/g, ''))
     this.setState({ sessionId })
   }
 
