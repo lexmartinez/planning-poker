@@ -1,22 +1,32 @@
 import * as React from 'react'
 import { Header } from '../../components'
-import { USER_LANG } from '../../config/constants'
+import { USER_LANG, OAUTH_PROVIDER } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 
-export default class Session extends React.Component <SessionProps> {
+export default class Session extends React.Component <SessionProps, SessionState> {
 
   constructor (props: SessionProps) {
     super(props)
     this.state = {
-      lang: i18n.language
+      lang: i18n.language,
+      sessionId: undefined
     }
     this.setLanguage = this.setLanguage.bind(this)
+    this.copyToClipboard = this.copyToClipboard.bind(this)
   }
 
   componentDidMount () {
-    document.body.classList.add('home')
-    document.body.classList.remove('login')
+    document.body.classList.add('session')
+    document.body.classList.remove('home')
+    this.setState({ sessionId: this.props.match.params.id })
+
+    window.ipcRenderer.on('copy-sid-reply', (event: any, { response }: any) => {
+      console.log('s-auth',response)
+      if (response) {
+        alert('Copied blablavblavl')
+      }
+    })
   }
 
   setLanguage () {
@@ -28,14 +38,29 @@ export default class Session extends React.Component <SessionProps> {
     })
   }
 
+  copyToClipboard () {
+    window.ipcRenderer.send('copy-sid', this.state.sessionId)
+  }
+
   render () {
     const { name, email, avatar } = this.props.user
     return (
             <div>
               <Header user={{ name, email, avatar }} history={this.props.history}
-                setLanguage={this.setLanguage}/>
+                setLanguage={this.setLanguage} logout={this.props.logout}/>
               <div className={'container'}>
-                {this.props.match.params.id}
+                <div className={'topbar'}>
+                  <ul>
+                    <li>
+                      <a onClick={this.copyToClipboard} className={'clipboard'}>
+                        <Icon type ={'clipboard'} size={'20'} color={'#d0e0ef'}/>
+                      </a>
+                    </li>
+                    <li>
+                      <b>Session ID: </b> {this.state.sessionId}
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
     )

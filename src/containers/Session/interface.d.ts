@@ -7,5 +7,11 @@ interface SessionProps {
     },
     setLanguage: any,
     session?: string,
-    match: any
+    match: any,
+    logout: any
 }
+
+interface SessionState {
+    sessionId?: string,
+    lang: string
+}  
