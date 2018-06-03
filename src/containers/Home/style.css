@@ -72,7 +72,6 @@ body.home .card-home .input {
     border-radius: 2px;
     border: 1px solid #b9b9bf;
     text-align: center;
-    -webkit-app-region: no-drag !important; 
     -webkit-user-select: text !important;
     user-select: text !important;
 }
