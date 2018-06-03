@@ -6,7 +6,8 @@ interface HeaderProps {
         email: string,
         avatar: string
     },
-    logout: any
+    logout: any,
+    session?: string
 }
 
 interface HeaderState {

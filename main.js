@@ -20,6 +20,7 @@ const createWindow = () => {
         titleBarStyle: 'hidden',
         frame: false,
         maximizable: false,
+        resizable: false,
         backgroundColor: '#ffffff',
         webPreferences: {
             nodeIntegration: false,

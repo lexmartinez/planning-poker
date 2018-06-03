@@ -13,7 +13,6 @@ export default class Session extends React.Component <SessionProps, SessionState
       sessionId: undefined
     }
     this.setLanguage = this.setLanguage.bind(this)
-    this.copyToClipboard = this.copyToClipboard.bind(this)
   }
 
   componentDidMount () {
@@ -38,29 +37,14 @@ export default class Session extends React.Component <SessionProps, SessionState
     })
   }
 
-  copyToClipboard () {
-    window.ipcRenderer.send('copy-sid', this.state.sessionId)
-  }
-
   render () {
     const { name, email, avatar } = this.props.user
     return (
             <div>
               <Header user={{ name, email, avatar }} history={this.props.history}
-                setLanguage={this.setLanguage} logout={this.props.logout}/>
+                setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.sessionId}/>
               <div className={'container'}>
-                <div className={'topbar'}>
-                  <ul>
-                    <li>
-                      <a onClick={this.copyToClipboard} className={'clipboard'}>
-                        <Icon type ={'clipboard'} size={'20'} color={'#d0e0ef'}/>
-                      </a>
-                    </li>
-                    <li>
-                      <b>Session ID: </b> {this.state.sessionId}
-                    </li>
-                  </ul>
-                </div>
+
               </div>
             </div>
     )

@@ -22,6 +22,9 @@ const en = {
       'subtitle': 'Just load your backlog and start planning!',
       'button': 'Create Session'
     }
+  },
+  session: {
+    'sid': 'Session ID'
   }
 }
 

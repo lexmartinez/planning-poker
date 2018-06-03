@@ -80,3 +80,21 @@ img.avatar {
 }
 
 .dropdown-content a:hover {background-color: #ddd}
+
+.navbar .session-panel {
+    margin-left: 100px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    color: #515261;
+}
+
+.session-panel .clipboard {
+    margin-right: 10px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+.session-panel b.sid-title {
+    margin-right: 5px;
+}

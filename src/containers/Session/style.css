@@ -12,28 +12,3 @@ body.session .container {
     height: 100vh;
     width: 100%;
 }
-
-body.session .topbar {
-    width: 100%;
-    background: #3f4261;
-    color: #fff;
-    padding-left: 80px;
-    padding-top: 20px;
-    padding-bottom: 18px;
-}
-
-body.session .topbar ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-body.session .topbar li {
-    float: left;
-    margin-left: 15px
-}
-
-body.session a.clipboard {
-    cursor: pointer;
-}
