@@ -7,7 +7,8 @@ interface HomeProps {
     },
     setLanguage: any,
     setLoading: any,
-    setError: any
+    setError: any,
+    logout: any
 }
 
 interface HomeState {

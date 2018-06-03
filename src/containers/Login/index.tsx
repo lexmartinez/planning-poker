@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import userInfo from '../../actions/auth'
+import { login } from '../../actions/auth'
 import { setLanguage, setLoading, setError } from '../../actions/global'
 import Login from './view'
 
@@ -13,7 +13,8 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => ({
   userInfo: (authToken: string, provider: string) => {
-    dispatch(userInfo(authToken, provider))
+    dispatch(login(authToken, provider))
+    dispatch(setLoading(false))
   },
   setLanguage: (lang: string) => {
     dispatch(setLanguage(lang))

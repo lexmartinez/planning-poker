@@ -14,6 +14,10 @@ const authFail = (error: any) => ({
   }
 })
 
+const safeLogout = () => ({
+  type: 'LOGOUT'
+})
+
 const getInfo = (authToken: string, provider = 'github') => {
   if (provider === 'google') {
     return oauth.googleInfo(authToken)
@@ -22,11 +26,17 @@ const getInfo = (authToken: string, provider = 'github') => {
   }
 }
 
-export default (authToken: string, provider: string) => {
+export const login = (authToken: string, provider: string) => {
   return (dispatch: any) => {
     getInfo(authToken, provider)
       .then((response: any) => response.json())
       .then((response: any) => (dispatch(authSuccess(response))))
       .catch((err: any) => dispatch(authFail(err)))
+  }
+}
+
+export const logout = () => {
+  return (dispatch: any) => {
+    dispatch(safeLogout())
   }
 }

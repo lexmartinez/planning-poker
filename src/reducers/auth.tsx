@@ -17,6 +17,12 @@ export default (state = initialState , action: any) => {
         isAuthenticated: false,
         ...action.payload
       }
+    case 'LOGOUT':
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: undefined
+      }
     default:
       return state
   }
