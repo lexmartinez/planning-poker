@@ -1,8 +1,9 @@
 const electronOauth2 = require('electron-oauth2');
 const oauth = require('../config/oauth.js');
+const {ipcMain} = require('electron')
 
 module.exports = {
-    init: (ipcMain) => {
+    init: () => {
 
         const githubOAuth = electronOauth2(oauth.github, oauth.window);
         const googleOAuth = electronOauth2(oauth.google, oauth.window);

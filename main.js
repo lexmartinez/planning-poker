@@ -55,5 +55,5 @@ app.on('activate', () => {
     }
 });
 
-modules.oauth.init(ipcMain);
-modules.session.init(ipcMain);
+modules.oauth.init();
+modules.session.init();
