@@ -5,7 +5,9 @@ interface HomeProps {
         name: string,
         email: string
     },
-    setLanguage: any
+    setLanguage: any,
+    setLoading: any,
+    setError: any
 }
 
 interface HomeState {

@@ -1,7 +1,7 @@
 import auth from './auth'
-import lang from './language'
+import global from './global'
 
 export default {
-  authReducer: auth,
-  langReducer: lang
+  auth,
+  global
 }

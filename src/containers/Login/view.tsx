@@ -33,7 +33,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   setUserData (accessToken: string, provider: string) {
-    this.setState({ loading: true, error: undefined })
+    this.props.setLoading(true)
+    this.props.setError(false)
     window.localStorage.setItem(OAUTH_TOKEN, accessToken)
     window.localStorage.setItem(OAUTH_PROVIDER, provider)
     this.props.userInfo(accessToken, provider)
@@ -58,18 +59,18 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   componentWillReceiveProps (nextProps: any) {
-    if ((nextProps.isAuthenticated && nextProps.user) || nextProps.error) {
+    if ((nextProps.isAuthenticated && nextProps.user) || nextProps.error || nextProps.loading) {
       this.setState({
         user: nextProps.user,
         isAuthenticated: nextProps.isAuthenticated,
         error: nextProps.error,
-        loading: false
+        loading: nextProps.loading
       })
     }
   }
 
   componentDidUpdate () {
-    if (this.state.isAuthenticated) {
+    if (this.state && this.state.isAuthenticated) {
       document.body.classList.remove('login')
       this.props.history.push('/')
     }

@@ -1,19 +1,25 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Home from './view'
-import setLanguage from '../../actions/language'
+import { setLanguage, setLoading, setError } from '../../actions/global'
 import './style.css'
 
 const mapStateToProps = (state: any) => {
   return ({
-    ...state.authReducer,
-    ...state.langReducer
+    ...state.auth,
+    ...state.global
   })
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
   setLanguage: (lang: string) => {
     dispatch(setLanguage(lang))
+  },
+  setLoading: (loading: boolean) => {
+    dispatch(setLoading(loading))
+  },
+  setError: (isError: boolean) => {
+    dispatch(setError(isError))
   }
 })
 

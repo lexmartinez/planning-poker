@@ -29,5 +29,5 @@ class PrivateRoute extends React.Component <{isAuthenticated: boolean, component
 }
 
 export default connect((state: any) => ({
-  isAuthenticated: state.authReducer.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated
 }))(PrivateRoute)

@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import userInfo from '../../actions/auth'
-import setLanguage from '../../actions/language'
+import { setLanguage, setLoading, setError } from '../../actions/global'
 import Login from './view'
 
 const mapStateToProps = (state: any) => {
   return ({
-    ...state.authReducer,
-    ...state.langReducer
+    ...state.auth,
+    ...state.global
   })
 }
 
@@ -17,6 +17,12 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
   setLanguage: (lang: string) => {
     dispatch(setLanguage(lang))
+  },
+  setError: (isError: boolean) => {
+    dispatch(setError(isError))
+  },
+  setLoading: (loading: boolean) => {
+    dispatch(setLoading(loading))
   }
 })
 
