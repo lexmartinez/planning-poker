@@ -27,6 +27,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
       this.props.setLoading(false)
       console.log('s-auth',response)
       if (response) {
+        console.log(response)
         this.props.history.push(`/session/${this.state.sessionId}`)
       } else {
         this.props.setError(true)
@@ -55,7 +56,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
       const { email } = this.props.user
       this.props.setLoading(true)
       window.ipcRenderer.send('session-auth', {
-        sessionId: this.state.sessionId,
+        sid: this.state.sessionId,
         email
       })
     } else {

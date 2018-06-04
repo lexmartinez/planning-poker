@@ -22,5 +22,9 @@ module.exports = {
         webPreferences: {
           nodeIntegration: false
         }
+    },
+    mongodb: {
+        url: 'MONGO_USER',
+        collection: 'MONGO_PASS'
     }
 }
