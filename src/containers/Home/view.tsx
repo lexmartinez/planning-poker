@@ -16,6 +16,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     }
     this.setLanguage = this.setLanguage.bind(this)
     this.startSession = this.startSession.bind(this)
+    this.createSession = this.createSession.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -30,6 +31,17 @@ export default class Home extends React.Component <HomeProps, HomeState> {
         this.props.history.push(`/session/${this.state.sessionId}`)
       } else {
         this.props.setError(true)
+      }
+    })
+
+    window.ipcRenderer.on('create-session-reply', (event: any, session: any) => {
+      this.props.setLoading(false)
+      if (session) {
+        this.props.setSession(session)
+        this.props.history.push(`/session/${this.state.sessionId}`)
+      } else {
+        alert('error')
+        // this.props.setError(true)
       }
     })
   }
@@ -63,6 +75,12 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     }
   }
 
+  createSession () {
+    const { email } = this.props.user
+    this.props.setLoading(true)
+    window.ipcRenderer.send('create-session', email)
+  }
+
   handleChange (event: any) {
     this.props.setError(false)
     const text = event.target.value.toUpperCase()
@@ -86,7 +104,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
                       <div className={'create-container'}>
                       <h1 className={'title'}>{i18n.t('home.create.title')}</h1>
                       <h2 className={'subtitle mrg-btm'}>{i18n.t('home.create.subtitle')}</h2>
-                        <a className={'button'}>{i18n.t('home.create.button')}</a>
+                        <a className={'button'} onClick={this.createSession}>{i18n.t('home.create.button')}</a>
                       </div>
                   </div>
                 </div>
