@@ -44,7 +44,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
   }
 
   copyToClipboard () {
-    window.ipcRenderer.send('copy-sid', this.props.session)
+    window.ipcRenderer.send('copy-sid', this.props.session.sid)
   }
 
   render () {
@@ -59,7 +59,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
                     <Icon type ={'clipboard'} size={'20'} color={'#50548d'}/>
                   </a>
                 </Tooltip>
-                <b className={'sid-title'}>{i18n.t('session.sid')}:</b>{this.props.session}
+                <b className={'sid-title'}>{i18n.t('session.sid')}:</b>{this.props.session.sid}
               </div> : undefined
           }
           <div className={'avatar-container'}>

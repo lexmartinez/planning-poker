@@ -12,7 +12,8 @@ module.exports = {
                 event.sender.send('session-auth-reply', {response: false});
               } else { 
                 if (session && session.team.indexOf(email) !== -1) {
-                  event.sender.send('session-auth-reply', {response:session});
+                  const {sid, host, team, backlog} = session
+                  event.sender.send('session-auth-reply', {response: {sid, host, team, backlog}});
                 } else {
                   event.sender.send('session-auth-reply', {response: false});
                 }

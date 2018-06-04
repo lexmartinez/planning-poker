@@ -10,7 +10,7 @@ export default class Session extends React.Component <SessionProps, SessionState
     super(props)
     this.state = {
       lang: i18n.language,
-      sessionId: undefined
+      session: this.props.session
     }
     this.setLanguage = this.setLanguage.bind(this)
   }
@@ -18,10 +18,8 @@ export default class Session extends React.Component <SessionProps, SessionState
   componentDidMount () {
     document.body.classList.add('session')
     document.body.classList.remove('home')
-    this.setState({ sessionId: this.props.match.params.id })
 
     window.ipcRenderer.on('copy-sid-reply', (event: any, { response }: any) => {
-      console.log('s-auth',response)
       if (response) {
         alert('Copied blablavblavl')
       }
@@ -42,7 +40,7 @@ export default class Session extends React.Component <SessionProps, SessionState
     return (
             <div>
               <Header user={{ name, email, avatar }} history={this.props.history}
-                setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.sessionId}/>
+                setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.session}/>
               <div className={'container'}>
 
               </div>

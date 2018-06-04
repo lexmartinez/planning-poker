@@ -6,12 +6,12 @@ interface SessionProps {
         email: string
     },
     setLanguage: any,
-    session?: string,
     match: any,
-    logout: any
+    logout: any,
+    session?: any
 }
 
 interface SessionState {
-    sessionId?: string,
-    lang: string
+    lang: string,
+    session?: any
 }  

@@ -7,7 +7,7 @@ interface HeaderProps {
         avatar: string
     },
     logout: any,
-    session?: string
+    session?: any
 }
 
 interface HeaderState {
