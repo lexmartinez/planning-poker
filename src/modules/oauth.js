@@ -6,8 +6,8 @@ const {ipcMain} = require('electron')
 
 module.exports = {
     init: () => {
-        const githubOAuth = electronOauth2(setup.github, oauth.window);
-        const googleOAuth = electronOauth2(setup.google, oauth.window);
+        const githubOAuth = electronOauth2(setup.github, setup.window);
+        const googleOAuth = electronOauth2(setup.google, setup.window);
         ipcMain.on('github-oauth', (event, arg) => {
             githubOAuth.getAccessToken({})
               .then(token => {

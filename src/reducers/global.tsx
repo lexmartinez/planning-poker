@@ -11,6 +11,7 @@ export default (state = initialState , action: any) => {
     case 'SET_LANG':
     case 'SET_LOADING':
     case 'SET_ERROR':
+    case 'SET_SESSION':
       return {
         ...state,
         ...action.payload

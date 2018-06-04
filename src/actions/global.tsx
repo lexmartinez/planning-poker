@@ -19,3 +19,9 @@ export const setError = (isError: boolean) => {
     dispatch(trigger('SET_ERROR', { error: isError }))
   }
 }
+
+export const setSession = (session: any) => {
+  return (dispatch: any) => {
+    dispatch(trigger('SET_SESSION', { session }))
+  }
+}

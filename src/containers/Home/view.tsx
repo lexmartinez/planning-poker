@@ -25,9 +25,8 @@ export default class Home extends React.Component <HomeProps, HomeState> {
 
     window.ipcRenderer.on('session-auth-reply', (event: any, { response }: any) => {
       this.props.setLoading(false)
-      console.log('s-auth',response)
       if (response) {
-        console.log(response)
+        this.props.setSession(response)
         this.props.history.push(`/session/${this.state.sessionId}`)
       } else {
         this.props.setError(true)

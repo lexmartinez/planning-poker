@@ -8,6 +8,7 @@ interface HomeProps {
     setLanguage: any,
     setLoading: any,
     setError: any,
+    setSession: any,
     logout: any
 }
 

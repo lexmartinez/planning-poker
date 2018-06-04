@@ -5,14 +5,17 @@ const model = require('./model')
 module.exports = {
     init: () => {
         ipcMain.on('session-auth', (event, arg) => {
-            console.log(arg);
             const { sid, email } = arg;
-            model.find({sid}, (error, session) => {
+            model.findOne({sid}, (error, session) => {
               if (error) { 
                 console.error(error) 
                 event.sender.send('session-auth-reply', {response: false});
-              } else {
-                event.sender.send('session-auth-reply', {response:session});
+              } else { 
+                if (session.team.indexOf(email) !== -1) {
+                  event.sender.send('session-auth-reply', {response:session});
+                } else {
+                  event.sender.send('session-auth-reply', {response: false});
+                }
               }
             });
           });
