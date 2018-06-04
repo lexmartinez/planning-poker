@@ -25,6 +25,6 @@ module.exports = {
     },
     mongodb: {
         url: 'MONGO_USER',
-        collection: 'MONGO_PASS'
+        model: 'MONGO_MODEL'
     }
 }
