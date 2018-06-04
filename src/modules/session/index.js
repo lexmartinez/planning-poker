@@ -11,7 +11,7 @@ module.exports = {
                 console.error(error) 
                 event.sender.send('session-auth-reply', {response: false});
               } else { 
-                if (session.team.indexOf(email) !== -1) {
+                if (session && session.team.indexOf(email) !== -1) {
                   event.sender.send('session-auth-reply', {response:session});
                 } else {
                   event.sender.send('session-auth-reply', {response: false});
