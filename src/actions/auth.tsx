@@ -1,21 +1,22 @@
 import { oauth, models } from '../services'
+import types from './types'
 
 const authSuccess = (model: any) => ({
-  type: 'AUTH_SUCCESS',
+  type: types.auth.AUTH_SUCCESS,
   payload: {
     user: models.user(model)
   }
 })
 
 const authFail = (error: any) => ({
-  type: 'AUTH_FAIL',
+  type: types.auth.AUTH_FAIL,
   payload: {
     error
   }
 })
 
 const safeLogout = () => ({
-  type: 'LOGOUT'
+  type: types.auth.LOGOUT
 })
 
 const getInfo = (authToken: string, provider = 'github') => {
