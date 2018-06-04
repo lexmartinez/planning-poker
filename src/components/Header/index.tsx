@@ -2,7 +2,9 @@ import * as React from 'react'
 import i18n from '../../config/i18n'
 import { OAUTH_TOKEN, OAUTH_PROVIDER, APP_NAME, USER_LANG } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
+import 'react-tippy/dist/tippy.css'
 import './style.css'
+import { Tooltip } from 'react-tippy'
 
 export default class Header extends React.Component<HeaderProps, HeaderState> {
 
@@ -52,16 +54,20 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
           {
             this.props.session ?
               <div className={'session-panel'}>
-                <a onClick={this.copyToClipboard} className={'clipboard'}>
-                  <Icon type ={'clipboard'} size={'20'} color={'#50548d'}/>
-                </a>
+                <Tooltip title={i18n.t('session.copyClipboard')}>
+                  <a onClick={this.copyToClipboard} className={'clipboard'}>
+                    <Icon type ={'clipboard'} size={'20'} color={'#50548d'}/>
+                  </a>
+                </Tooltip>
                 <b className={'sid-title'}>{i18n.t('session.sid')}:</b>{this.props.session}
               </div> : undefined
           }
           <div className={'avatar-container'}>
             <img src={ user.avatar } className={'avatar'}/>
             <p className={'avatar-info'}>{i18n.t('home.hello')}, {user.name}</p>
-            <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
+            <Tooltip title={i18n.t('home.menu')} distance={0}>
+              <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
+            </Tooltip>
             <div className={'dropdown'}>
               {
               this.state.showMenu ?

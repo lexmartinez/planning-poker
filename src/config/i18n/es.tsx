@@ -6,6 +6,7 @@ const es = {
     'hello': 'Hola',
     'logout': 'Cerrar Sesión',
     'about': 'Acerca de',
+    'menu': 'Menú',
     lang: {
       'label': 'Cambiar Idioma a',
       'target': 'en',
@@ -24,7 +25,8 @@ const es = {
     }
   },
   session: {
-    'sid': 'ID de Sesión'
+    'sid': 'ID de Sesión',
+    'copyClipboard': 'Copiar ID'
   }
 }
 
