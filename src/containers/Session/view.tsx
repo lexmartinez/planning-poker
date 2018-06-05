@@ -44,7 +44,18 @@ export default class Session extends React.Component <SessionProps, SessionState
               <Header user={{ name, email, avatar }} history={this.props.history}
                 setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.session}/>
               <div className={'container'}>
-
+                <div className={'main-panel'}></div>
+                <div className={'team-panel'}>
+                  <div className={'card'}>
+                    <div className={'card-title'}>
+                     <b>Teammates</b>
+                    </div>
+                    <div className={'card-button'}>
+                     <a><Icon type ={'user-plus'} size={'20'} color={'#50548d'}/>
+                        <span>Invite a Teammate</span></a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
     )
