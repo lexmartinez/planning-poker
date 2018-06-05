@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Header } from '../../components'
-import { USER_LANG, OAUTH_PROVIDER } from '../../config/constants'
+import { USER_LANG, OAUTH_PROVIDER, APP_NAME } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 
@@ -21,7 +21,9 @@ export default class Session extends React.Component <SessionProps, SessionState
 
     window.ipcRenderer.on('copy-sid-reply', (event: any, { response }: any) => {
       if (response) {
-        alert('Copied blablavblavl')
+        const notification = new Notification(APP_NAME, {
+          body: i18n.t('session.copySuccess')
+        })
       }
     })
   }

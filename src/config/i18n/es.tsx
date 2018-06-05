@@ -26,7 +26,8 @@ const es = {
   },
   session: {
     'sid': 'ID de Sesión',
-    'copyClipboard': 'Copiar ID'
+    'copyClipboard': 'Copiar ID',
+    'copySuccess': 'ID de sesión copiado exitósamente!'
   }
 }
 

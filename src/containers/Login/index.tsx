@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { login } from '../../actions/auth'
 import { setLanguage, setLoading, setError } from '../../actions/global'
 import Login from './view'
+import './style.css'
 
 const mapStateToProps = (state: any) => {
   return ({

@@ -2,7 +2,6 @@ import * as React from 'react'
 import i18n from '../../config/i18n'
 import { OAUTH_TOKEN, OAUTH_PROVIDER, APP_NAME, USER_LANG } from '../../config/constants'
 import { Loading } from '../../components'
-import './style.css'
 
 export default class Login extends React.Component<LoginProps, LoginState> {
 
