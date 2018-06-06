@@ -27,7 +27,10 @@ const en = {
   session: {
     'sid': 'Session ID',
     'copyClipboard': 'Copy Session ID',
-    'copySuccess': 'Session ID copied successfully!'
+    'copySuccess': 'Session ID copied successfully!',
+    'invite': 'Invite Team',
+    'team': 'Team',
+    'online': 'Online'
   }
 }
 

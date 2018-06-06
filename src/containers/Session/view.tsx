@@ -3,6 +3,8 @@ import { Header } from '../../components'
 import { USER_LANG, OAUTH_PROVIDER, APP_NAME } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
+import 'react-tippy/dist/tippy.css'
+import { Tooltip } from 'react-tippy'
 
 export default class Session extends React.Component <SessionProps, SessionState> {
 
@@ -48,11 +50,15 @@ export default class Session extends React.Component <SessionProps, SessionState
                 <div className={'team-panel'}>
                   <div className={'card'}>
                     <div className={'card-title'}>
-                     <b>Teammates</b>
-                    </div>
-                    <div className={'card-button'}>
-                     <a><Icon type ={'user-plus'} size={'20'} color={'#50548d'}/>
-                        <span>Invite a Teammate</span></a>
+                     <ul className={'card-tabs'}>
+                       <li><a className={'active'}>{i18n.t('session.online')} (5)</a></li>
+                       <li><a>{i18n.t('session.team')}</a></li>
+                       <li className={'right-item'}>
+                        <Tooltip title={i18n.t('session.invite')} position={'bottom'}>
+                          <a><Icon type ={'user-plus'} size={'20'} color={'#ffffff'}/></a>
+                        </Tooltip>
+                       </li>
+                     </ul>
                     </div>
                   </div>
                 </div>
