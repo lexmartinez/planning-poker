@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Header } from '../../components'
+import { Header, TeamPanel } from '../../components'
 import { USER_LANG, OAUTH_PROVIDER, APP_NAME } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
@@ -47,21 +47,7 @@ export default class Session extends React.Component <SessionProps, SessionState
                 setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.session}/>
               <div className={'container'}>
                 <div className={'main-panel'}></div>
-                <div className={'team-panel'}>
-                  <div className={'card'}>
-                    <div className={'card-title'}>
-                     <ul className={'card-tabs'}>
-                       <li><a className={'active'}>{i18n.t('session.online')} (5)</a></li>
-                       <li><a>{i18n.t('session.team')}</a></li>
-                       <li className={'right-item'}>
-                        <Tooltip title={i18n.t('session.invite')} position={'bottom'}>
-                          <a><Icon type ={'user-plus'} size={'20'} color={'#ffffff'}/></a>
-                        </Tooltip>
-                       </li>
-                     </ul>
-                    </div>
-                  </div>
-                </div>
+                <TeamPanel session={this.state.session} user={this.props.user}/>
               </div>
             </div>
     )

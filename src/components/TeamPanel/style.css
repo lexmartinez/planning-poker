@@ -1,0 +1,129 @@
+body.session .team-panel{
+    width: 30%;
+    height: 100vh;
+    float: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+}
+
+body.session .card {
+    box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.07);
+    margin: 20px;
+    border-radius: 4px;
+    width: 90%;
+    min-height: 400px;
+    max-height: 400px;
+    background: #fdfdfd;
+}
+
+body.session .card-title {
+    background: #50548d;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+body.session ul.card-tabs {
+    list-style:none;
+    height: 50px;
+    line-height: 50px;
+    margin-top: 0;
+    padding-left:0
+}
+
+body.session ul.card-tabs li {
+    display:block;
+    float:left;
+    list-style:none;
+    position:relative;
+    height: 100%;
+ }
+
+ body.session ul.card-tabs li.right-item {
+    display:block;
+    float:right;
+    list-style:none;
+    position:relative;
+    height: 47px;
+ }
+
+ body.session ul.card-tabs li.right-item a {
+    padding-top: 3px;
+    height: 47px;
+ }
+
+ body.session ul.card-tabs li.right-item a:hover {
+    padding-top: 3px;
+    border-bottom:3px solid #717ae3;
+    height: 44px;
+ }
+
+body.session ul.card-tabs li a {
+    display:block;
+    padding-left: 20px;
+    padding-right: 20px;
+    color:#ffffff;
+    text-decoration:none;
+    line-height:50px;
+    cursor: pointer;
+ }
+
+body.session ul.card-tabs li a:hover {
+    border-bottom:3px solid #717ae3;
+    color:#fff;
+    height: 47px;
+}
+
+body.session ul.card-tabs li a.active,
+body.session ul.card-tabs li a.active:hover {
+    color:#fff;
+    height: 47px;
+    border-bottom:3px solid #3b3e69;
+ }
+
+ body.session .card-content {
+     width: 100%;
+     margin: 0;
+     max-height: 350px;
+     overflow-y: scroll;
+     overflow-x: hidden;
+ }
+
+ body.session ul.member-list {
+    list-style:none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+ }
+
+ body.session li.member {
+   background: #717ae3;
+   height: 30px;
+   background: #f5f5f5;
+   border: 1px solid #f2f2f2;
+   display: flex;
+   align-items: flex-start;
+   padding: 10px;
+   padding-left: 20px;
+   line-height: 30px;
+}
+
+body.session .member-icon {
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+body.session .member-trash {
+    margin-right: 10px;
+    margin-top: 4px;
+    width: 100%;
+    text-align: right;
+}
+
+body.session .member-trash a {
+    cursor: pointer;
+}
