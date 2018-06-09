@@ -35,6 +35,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     window.localStorage.removeItem(OAUTH_TOKEN)
     window.localStorage.removeItem(OAUTH_PROVIDER)
     document.body.classList.remove('home')
+    document.body.classList.remove('session')
     this.props.logout()
     this.props.history.push('/login')
   }
