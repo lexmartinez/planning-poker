@@ -1,11 +1,11 @@
 import Header from './Header'
 import PrivateRoute from './PrivateRoute'
 import Loading from './Loading'
-import TeamPanel from './TeamPanel'
+import SidePanel from './SidePanel'
 
 export {
     Header,
     PrivateRoute,
     Loading,
-    TeamPanel
+    SidePanel
 }

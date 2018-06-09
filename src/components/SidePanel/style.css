@@ -1,20 +1,10 @@
-body.session .team-panel{
-    width: 30%;
-    height: 100vh;
-    float: right;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    text-align: center;
-}
-
 body.session .card {
     box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.07);
     margin: 20px;
     border-radius: 4px;
     width: 90%;
-    min-height: 400px;
-    max-height: 400px;
+    min-height: 470px;
+    max-height: 470px;
     background: #fdfdfd;
 }
 
@@ -88,7 +78,7 @@ body.session ul.card-tabs li a.active:hover {
  body.session .card-content {
      width: 100%;
      margin: 0;
-     max-height: 350px;
+     max-height: 420px;
      overflow-y: scroll;
      overflow-x: hidden;
  }

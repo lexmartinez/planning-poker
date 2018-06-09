@@ -5,12 +5,12 @@ import 'react-tippy/dist/tippy.css'
 import './style.css'
 import { Tooltip } from 'react-tippy'
 
-export default class TeamPanel extends React.Component<TeamPanelProps, TeamPanelState> {
+export default class SidePanel extends React.Component<SidePanelProps, SidePanelState> {
 
-  constructor (props: TeamPanelProps) {
+  constructor (props: SidePanelProps) {
     super(props)
     this.state = {
-      currentTab: 'online'
+      currentTab: 'backlog'
     }
     this.setTab = this.setTab.bind(this)
   }
@@ -42,12 +42,11 @@ export default class TeamPanel extends React.Component<TeamPanelProps, TeamPanel
     const { user, session } = this.props
     const tab = this.state.currentTab
     return (
-        <div className={'team-panel'}>
             <div className={'card'}>
                 <div className={'card-title'}>
                      <ul className={'card-tabs'}>
-                       <li><a className={tab === 'online' ? 'active' : undefined}
-                              onClick={() => { this.setTab('online') } }>{i18n.t('session.online')} (5)</a></li>
+                       <li><a className={tab === 'backog' ? 'active' : undefined}
+                              onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')} (5)</a></li>
                        <li><a className={tab === 'team' ? 'active' : undefined}
                               onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
                        <li className={'right-item'}>
@@ -59,14 +58,13 @@ export default class TeamPanel extends React.Component<TeamPanelProps, TeamPanel
                 </div>
                 <div className={'card-content'}>
                 {
-                   this.state.currentTab === 'online' ?
-                        <div>ONLINE</div> :
+                   this.state.currentTab === 'backlog' ?
+                        <div>BACKLOG</div> :
                         undefined
                 }
                 { this.state.currentTab === 'team' ? this.renderTeam(user, session) : undefined }
                 </div>
             </div>
-        </div>
     )
   }
 }

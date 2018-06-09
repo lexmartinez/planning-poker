@@ -1,4 +1,4 @@
-interface TeamPanelProps {
+interface SidePanelProps {
     session: any,
     user: {
         name: string,
@@ -7,6 +7,6 @@ interface TeamPanelProps {
     }
 }
 
-interface TeamPanelState {
+interface SidePanelState {
     currentTab: string
 }

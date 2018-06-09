@@ -30,7 +30,7 @@ const es = {
     'copySuccess': 'ID de sesión copiado exitósamente!',
     'invite': 'Invitar Equipo',
     'team': 'Equipo',
-    'online': 'En Línea'
+    'backlog': 'Historias'
   }
 }
 

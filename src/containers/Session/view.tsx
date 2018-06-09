@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Header, TeamPanel } from '../../components'
+import { Header, SidePanel } from '../../components'
 import { USER_LANG, OAUTH_PROVIDER, APP_NAME } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
@@ -47,7 +47,9 @@ export default class Session extends React.Component <SessionProps, SessionState
                 setLanguage={this.setLanguage} logout={this.props.logout} session={this.state.session}/>
               <div className={'container'}>
                 <div className={'main-panel'}></div>
-                <TeamPanel session={this.state.session} user={this.props.user}/>
+                <div className={'side-panel'}>
+                  <SidePanel session={this.state.session} user={this.props.user}/>
+                </div>
               </div>
             </div>
     )

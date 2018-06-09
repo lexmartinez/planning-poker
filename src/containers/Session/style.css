@@ -18,3 +18,13 @@ body.session .main-panel{
     height: 100vh;
     float: left;
 }
+
+body.session .side-panel{
+    width: 30%;
+    height: 100vh;
+    float: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+}

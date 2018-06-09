@@ -30,7 +30,7 @@ const en = {
     'copySuccess': 'Session ID copied successfully!',
     'invite': 'Invite Team',
     'team': 'Team',
-    'online': 'Online'
+    'backlog': 'Stories'
   }
 }
 
