@@ -28,9 +28,14 @@ const es = {
     'sid': 'ID de Sesión',
     'copyClipboard': 'Copiar ID',
     'copySuccess': 'ID de sesión copiado exitósamente!',
-    'invite': 'Invitar Equipo',
+    'addMember': 'Agregar Miembro',
     'team': 'Equipo',
-    'backlog': 'Historias'
+    'backlog': 'Historias',
+    'addStory': 'Agregar Historia',
+    'emptyTeam': 'Sin miembros aun',
+    'emptyBacklog': 'Sin historias aun',
+    'hintTeam': 'Use el botón más (+) para invitar los miembros del equipo.',
+    'hintBacklog': 'Use el botón más (+) para incluir nuevas historias en su backlog'
   }
 }
 

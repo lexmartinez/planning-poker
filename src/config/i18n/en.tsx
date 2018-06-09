@@ -28,9 +28,14 @@ const en = {
     'sid': 'Session ID',
     'copyClipboard': 'Copy Session ID',
     'copySuccess': 'Session ID copied successfully!',
-    'invite': 'Invite Team',
+    'addMember': 'Add Member',
     'team': 'Team',
-    'backlog': 'Stories'
+    'backlog': 'Stories',
+    'addStory': 'Add Story',
+    'emptyTeam': 'No members yet,',
+    'emptyBacklog': 'No stories yet,',
+    'hintTeam': 'Use plus (+) button to invite members.',
+    'hintBacklog': 'Use plus (+) button to include new stories on your backlog.'
   }
 }
 

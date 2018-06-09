@@ -4,6 +4,7 @@ import Icon from '@oovui/react-feather-icons'
 import 'react-tippy/dist/tippy.css'
 import './style.css'
 import { Tooltip } from 'react-tippy'
+import EmptyMessage from '../EmptyMessage'
 
 export default class SidePanel extends React.Component<SidePanelProps, SidePanelState> {
 
@@ -19,8 +20,17 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     this.setState({ currentTab: tab })
   }
 
+  renderBacklog ({ email }: any, { backlog }: any) {
+    if (!backlog || backlog.length === 0) {
+      return <EmptyMessage icon={'list'} message={'session.emptyBacklog'} hint={'session.hintBacklog'}/>
+    }
+    return undefined
+  }
+
   renderTeam ({ email }: any, { team, host }: any) {
-    if (!team || team.length === 0) return <div>paila :(</div>
+    if (!team || team.length === 0) {
+      return <EmptyMessage icon={'users'} message={'session.emptyTeam'} hint={'session.hintTeam'}/>
+    }
 
     const items = team.map((member: any) =>
         <li className={'member'} key={member}>
@@ -45,23 +55,20 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
             <div className={'card'}>
                 <div className={'card-title'}>
                      <ul className={'card-tabs'}>
-                       <li><a className={tab === 'backog' ? 'active' : undefined}
-                              onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')} (5)</a></li>
+                       <li><a className={tab === 'backlog' ? 'active' : undefined}
+                              onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')}
+                              {session.backlog.length > 0 ? `(${session.backlog.length})` : undefined}</a></li>
                        <li><a className={tab === 'team' ? 'active' : undefined}
                               onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
                        <li className={'right-item'}>
-                        <Tooltip title={i18n.t('session.invite')} position={'bottom'}>
-                          <a><Icon type ={'user-plus'} size={'20'} color={'#ffffff'}/></a>
+                        <Tooltip title={i18n.t(tab === 'backlog' ? 'session.addStory' : 'session.addMember')}
+                          position={'bottom'}><a><Icon type ={'plus'} size={'20'} color={'#ffffff'}/></a>
                         </Tooltip>
                        </li>
                      </ul>
                 </div>
                 <div className={'card-content'}>
-                {
-                   this.state.currentTab === 'backlog' ?
-                        <div>BACKLOG</div> :
-                        undefined
-                }
+                { this.state.currentTab === 'backlog' ? this.renderBacklog(user, session) : undefined }
                 { this.state.currentTab === 'team' ? this.renderTeam(user, session) : undefined }
                 </div>
             </div>

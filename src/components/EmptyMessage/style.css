@@ -1,0 +1,13 @@
+.empty-message {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+    margin-top: 70px;
+}
+
+.empty-message p.empty-message-text {
+    color: #515261;
+    cursor: default;
+    padding-left: 30px;
+    padding-right: 30px;
+}
