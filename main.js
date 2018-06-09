@@ -12,11 +12,11 @@ if (process.env.ELECTRON_START_URL) {
 let mainWindow = undefined
 
 const createWindow = () => {
-    const {width, height} = electron.screen.getPrimaryDisplay().size
+    // const {width, height} = electron.screen.getPrimaryDisplay().size
     mainWindow = new BrowserWindow({
-        height: height * 0.8,
+        height: 720,// height * 0.8,
         useContentSize: true,
-        width: width * 0.8,
+        width: 1200,// width * 0.8,
         titleBarStyle: 'hidden',
         frame: false,
         maximizable: false,
