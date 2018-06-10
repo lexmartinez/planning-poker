@@ -27,7 +27,7 @@ const en = {
   session: {
     'sid': 'Session ID',
     'copyClipboard': 'Copy Session ID',
-    'copySuccess': 'Session ID copied successfully!',
+    'copySuccess': 'Copied!',
     'addMember': 'Add Member',
     'team': 'Team',
     'backlog': 'Stories',

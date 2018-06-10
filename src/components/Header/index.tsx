@@ -11,12 +11,21 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
   constructor (props: HeaderProps) {
     super(props)
     this.state = {
-      showMenu: false
+      showMenu: false,
+      isCopying: false
     }
     this.showMenu = this.showMenu.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
     this.logout = this.logout.bind(this)
     this.copyToClipboard = this.copyToClipboard.bind(this)
+  }
+
+  componentDidMount () {
+    window.ipcRenderer.on('copy-sid-reply', (event: any, { response }: any) => {
+      setTimeout(() => {
+        this.setState({ isCopying: false })
+      }, 500)
+    })
   }
 
   showMenu () {
@@ -45,6 +54,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
   }
 
   copyToClipboard () {
+    this.setState({ isCopying: true })
     window.ipcRenderer.send('copy-sid', this.props.session.sid)
   }
 
@@ -81,6 +91,13 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
               }
           </div>
           </div>
+          {
+            this.state.isCopying ?
+                <div className={'nav-modal'} key={'clipboard-modal'}>
+                  <Icon type ={'check-circle'} size={'90'} color={'#ffffff'}/>
+                  <h1>{i18n.t('session.copySuccess')}</h1>
+                </div> : undefined
+          }
       </div>
     )
   }

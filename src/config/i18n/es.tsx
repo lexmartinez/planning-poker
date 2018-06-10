@@ -27,7 +27,7 @@ const es = {
   session: {
     'sid': 'ID de Sesión',
     'copyClipboard': 'Copiar ID',
-    'copySuccess': 'ID de sesión copiado exitósamente!',
+    'copySuccess': 'Copiado!',
     'addMember': 'Agregar Miembro',
     'team': 'Equipo',
     'backlog': 'Historias',

@@ -20,14 +20,6 @@ export default class Session extends React.Component <SessionProps, SessionState
   componentDidMount () {
     document.body.classList.add('session')
     document.body.classList.remove('home')
-
-    window.ipcRenderer.on('copy-sid-reply', (event: any, { response }: any) => {
-      if (response) {
-        const notification = new Notification(APP_NAME, {
-          body: i18n.t('session.copySuccess')
-        })
-      }
-    })
   }
 
   setLanguage () {

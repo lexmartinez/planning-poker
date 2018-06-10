@@ -11,5 +11,6 @@ interface HeaderProps {
 }
 
 interface HeaderState {
-    showMenu: boolean
+    showMenu: boolean,
+    isCopying: boolean
 }
