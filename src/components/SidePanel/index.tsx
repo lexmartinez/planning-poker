@@ -5,19 +5,52 @@ import 'react-tippy/dist/tippy.css'
 import './style.css'
 import { Tooltip } from 'react-tippy'
 import EmptyMessage from '../EmptyMessage'
+import Modal from 'react-responsive-modal'
 
+const modalStyle = {
+  closeButton: {
+    cursor: 'pointer'
+  },
+  overlay: {
+    backgroundColor: 'rgba(35, 35, 35, 0.5)'
+  },
+  modal: {
+    width: '500px',
+    height: '380px',
+    borderRadius: '5px',
+    boxShadow: '0 2px 5px 0 rgba(100, 100, 100, 0.25)'
+  }
+}
 export default class SidePanel extends React.Component<SidePanelProps, SidePanelState> {
 
   constructor (props: SidePanelProps) {
     super(props)
     this.state = {
-      currentTab: 'backlog'
+      currentTab: 'backlog',
+      modal: false,
+      textarea: ''
     }
     this.setTab = this.setTab.bind(this)
+    this.onOpenModal = this.onOpenModal.bind(this)
+    this.addMembers = this.addMembers.bind(this)
+    this.renderInvite = this.renderInvite.bind(this)
   }
 
   setTab (tab: string) {
     this.setState({ currentTab: tab })
+  }
+
+  onOpenModal = () => {
+    this.setState({ modal: true })
+  }
+
+  onCloseModal = () => {
+    this.setState({ modal: false })
+  }
+
+  addMembers () {
+    const list = this.state.textarea.replace(' ', ',').replace('\n',',')
+    console.log(list)
   }
 
   renderBacklog ({ email }: any, { backlog }: any) {
@@ -28,7 +61,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
   }
 
   renderTeam ({ email }: any, { team, host }: any) {
-    if (!team || team.length === 0) {
+    if (!team || (team.length === 1 && team[0] === host)) {
       return <EmptyMessage icon={'users'} message={'session.emptyTeam'} hint={'session.hintTeam'}/>
     }
 
@@ -48,30 +81,52 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     return (<ul className={'member-list'}>{items}</ul>)
   }
 
+  renderInvite (session: any) {
+    return (
+      <div>
+        <h2 className={'modal-title'}>{i18n.t('session.invite.title')}</h2>
+        <div className={'modal-line'}/>
+        <p className={'modal-paragraph'}>{i18n.t('session.invite.paragraph')}</p>
+        <textarea rows={7} className={'modal-textarea'}
+          onChange={(event) => { this.setState({ textarea: event.target.value }) }} ></textarea>
+        <p className={'modal-hint'}>{i18n.t('session.invite.hint')}</p>
+        <div className={'modal-button-container'}>
+          <a onClick={this.addMembers} className={'modal-button'}>{i18n.t('session.invite.button')}</a>
+        </div>
+      </div>
+    )
+  }
+
   render () {
     const { user, session } = this.props
-    const tab = this.state.currentTab
+    const { currentTab, modal } = this.state
     return (
-            <div className={'card'}>
-                <div className={'card-title'}>
-                     <ul className={'card-tabs'}>
-                       <li><a className={tab === 'backlog' ? 'active' : undefined}
-                              onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')}
+      <div className={'card'}>
+        <div className={'card-title'}>
+          <ul className={'card-tabs'}>
+            <li><a className={currentTab === 'backlog' ? 'active' : undefined}
+                        onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')}
                               {session.backlog.length > 0 ? `(${session.backlog.length})` : undefined}</a></li>
-                       <li><a className={tab === 'team' ? 'active' : undefined}
-                              onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
-                       <li className={'right-item'}>
-                        <Tooltip title={i18n.t(tab === 'backlog' ? 'session.addStory' : 'session.addMember')}
-                          position={'bottom'}><a><Icon type ={'plus'} size={'20'} color={'#ffffff'}/></a>
-                        </Tooltip>
-                       </li>
-                     </ul>
-                </div>
-                <div className={'card-content'}>
-                { this.state.currentTab === 'backlog' ? this.renderBacklog(user, session) : undefined }
-                { this.state.currentTab === 'team' ? this.renderTeam(user, session) : undefined }
-                </div>
-            </div>
+            <li><a className={currentTab === 'team' ? 'active' : undefined}
+                        onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
+            <li className={'right-item'}>
+              <Tooltip title={i18n.t(currentTab === 'backlog' ? 'session.addStory' : 'session.addMember')}
+                position={'bottom'}>
+                <a onClick={this.onOpenModal}><Icon type ={'plus'} size={'20'} color={'#ffffff'}/></a>
+              </Tooltip>
+            </li>
+          </ul>
+        </div>
+        <div className={'card-content'}>
+          { currentTab === 'backlog' ? this.renderBacklog(user, session) : undefined }
+          { currentTab === 'team' ? this.renderTeam(user, session) : undefined }
+        </div>
+        <Modal open={modal} onClose={this.onCloseModal} center={true} closeIconSize={20}
+            styles={ modalStyle }>
+          { currentTab === 'backlog' ? this.renderInvite(session) : undefined }
+          { currentTab === 'team' ? this.renderInvite(session) : undefined }
+        </Modal>
+      </div>
     )
   }
 }

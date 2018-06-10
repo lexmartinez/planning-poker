@@ -8,5 +8,7 @@ interface SidePanelProps {
 }
 
 interface SidePanelState {
-    currentTab: string
+    currentTab: string,
+    modal: boolean,
+    textarea: string
 }

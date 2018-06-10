@@ -35,7 +35,14 @@ const en = {
     'emptyTeam': 'No members yet,',
     'emptyBacklog': 'No stories yet,',
     'hintTeam': 'Use plus (+) button to invite members.',
-    'hintBacklog': 'Use plus (+) button to include new stories on your backlog.'
+    'hintBacklog': 'Use plus (+) button to include new stories on your backlog.',
+    invite: {
+      'title': 'Invite your team',
+      'paragraph': 'Enter emails manually or copy paste a list of emails. ' +
+                   'Please separate email addresses with a space and/or comma, or enter each email on a new line.',
+      'hint': 'Duplicate or invalid addresses will be removed from the list, also if the member already was invited',
+      'button': 'Invite Team'
+    }
   }
 }
 

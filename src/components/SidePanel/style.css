@@ -1,6 +1,6 @@
 body.session .card {
     box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.07);
-    margin: 20px;
+    margin-top: 30px;
     border-radius: 4px;
     width: 90%;
     min-height: 470px;
@@ -116,4 +116,57 @@ body.session .member-trash {
 
 body.session .member-trash a {
     cursor: pointer;
+}
+
+body.session .modal-title {
+    color: #50548d;
+}
+
+body.session .modal-paragraph {
+    color: #515261;
+    text-align: justify
+}
+
+body.session .modal-line {
+    width: 100%;
+    border-bottom: 1px solid #dcdcdf;
+}
+
+body.session .modal-hint {
+    color: #a2a2a3;
+    text-align: justify;
+    font-size: 0.8em;
+}
+
+body.session .modal-textarea {
+    border: 1px solid #a2a2a3;
+    border-radius: 3px;
+    width:100%;
+    resize: none;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #515261;
+}
+
+body.session .modal-button {
+    color: #fff;
+    background: #515261;
+    border-radius: 5px;
+    height: 20px;
+    line-height: 20px;
+    padding: 9px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: normal;
+    text-decoration: none;
+    box-shadow: 0.5px 1px 2.5px 0px rgba(24,24,24,0.12);
+}
+
+body.session .modal-button:hover {
+    background: #38383f;
+}
+
+body.session .modal-button-container {
+    width: 100%;
+    text-align: right;
 }

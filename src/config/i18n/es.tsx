@@ -35,7 +35,15 @@ const es = {
     'emptyTeam': 'Sin miembros aun',
     'emptyBacklog': 'Sin historias aun',
     'hintTeam': 'Use el botón más (+) para invitar los miembros del equipo.',
-    'hintBacklog': 'Use el botón más (+) para incluir nuevas historias en su backlog'
+    'hintBacklog': 'Use el botón más (+) para incluir nuevas historias en su backlog',
+    invite: {
+      'title': 'Invita a tu equipo',
+      'paragraph': 'Digita los emails manualmente o copia y pega una lista de emails. ' +
+                   'Separa los email con espacio y/o coma, o ingresa cada email en una línea nueva.',
+      'hint': 'Las direcciones duplicadas o inválidas serán removidas de la lista,' +
+              ' también si el miembro ya fué invitado.',
+      'button': 'Invitar Equipo'
+    }
   }
 }
 
