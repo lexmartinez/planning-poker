@@ -5,6 +5,7 @@ import Icon from '@oovui/react-feather-icons'
 import 'react-tippy/dist/tippy.css'
 import './style.css'
 import { Tooltip } from 'react-tippy'
+import SuccessMessage from '../SuccessMessage'
 
 export default class Header extends React.Component<HeaderProps, HeaderState> {
 
@@ -59,18 +60,19 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
   }
 
   render () {
-    const { user } = this.props
+    const { user, session, setLanguage } = this.props
+    const { showMenu, isCopying } = this.state
     return (
       <div className={'navbar'}>
           {
-            this.props.session ?
+            session ?
               <div className={'session-panel'}>
                 <Tooltip title={i18n.t('session.copyClipboard')}>
                   <a onClick={this.copyToClipboard} className={'clipboard'}>
                     <Icon type ={'clipboard'} size={'20'} color={'#50548d'}/>
                   </a>
                 </Tooltip>
-                <b className={'sid-title'}>{i18n.t('session.sid')}:</b>{this.props.session.sid}
+                <b className={'sid-title'}>{i18n.t('session.sid')}:</b>{session.sid}
               </div> : undefined
           }
           <div className={'avatar-container'}>
@@ -81,23 +83,17 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
             </Tooltip>
             <div className={'dropdown'}>
               {
-              this.state.showMenu ?
+              showMenu ?
                 <div className={'dropdown-content open'}>
                   <a onClick={this.about}>{i18n.t('home.about')} {APP_NAME}</a>
-                  <a onClick={this.props.setLanguage}>{i18n.t('home.lang.label')} <b>
+                  <a onClick={setLanguage}>{i18n.t('home.lang.label')} <b>
                     {i18n.t('home.lang.targetName')}</b></a>
                   <a onClick={this.logout}>{i18n.t('home.logout')}</a>
                 </div> : undefined
               }
           </div>
           </div>
-          {
-            this.state.isCopying ?
-                <div className={'nav-modal'} key={'clipboard-modal'}>
-                  <Icon type ={'check-circle'} size={'90'} color={'#ffffff'}/>
-                  <h1>{i18n.t('session.copySuccess')}</h1>
-                </div> : undefined
-          }
+          <SuccessMessage message={'session.copySuccess'} show={isCopying}/>
       </div>
     )
   }

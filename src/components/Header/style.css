@@ -98,38 +98,3 @@ img.avatar {
 .session-panel b.sid-title {
     margin-right: 5px;
 }
-
-.navbar .nav-modal {
-    position: fixed;
-    z-index: 99999999;
-    width: 200px;
-    height: 160px;
-    overflow: show;
-    margin: auto;
-    top: 600px;
-    left: 360px;
-    bottom: 600px;
-    right: 360px;
-    overflow: hidden; 
-    background-color: rgba(35,35,35,0.5);
-    border-radius: 10px;
-    text-align: center;
-    padding-top: 40px;
-}
-  
-.navbar .nav-modal:before {
-    content: '';
-    display: block;
-    position: fixed;
-    top: 600px;
-    left: 360px;
-    width: 200px;
-    height: 200px;
-}
-
-.nav-modal > h1{
-    display: block;
-    font-family: "Muli", sans-serif;
-    font-size: 1.4em;
-    color: #ffffff;
-}
