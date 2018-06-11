@@ -10,5 +10,6 @@ interface SidePanelProps {
 interface SidePanelState {
     currentTab: string,
     modal: boolean,
-    textarea: string
+    textarea: string,
+    success: boolean
 }

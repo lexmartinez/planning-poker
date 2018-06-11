@@ -4,7 +4,7 @@ import Icon from '@oovui/react-feather-icons'
 import 'react-tippy/dist/tippy.css'
 import './style.css'
 import { Tooltip } from 'react-tippy'
-import EmptyMessage from '../EmptyMessage'
+import { EmptyMessage, SuccessMessage } from '../'
 import Modal from 'react-responsive-modal'
 
 const modalStyle = {
@@ -21,6 +21,7 @@ const modalStyle = {
     boxShadow: '0 2px 5px 0 rgba(100, 100, 100, 0.25)'
   }
 }
+
 export default class SidePanel extends React.Component<SidePanelProps, SidePanelState> {
 
   constructor (props: SidePanelProps) {
@@ -28,12 +29,22 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     this.state = {
       currentTab: 'backlog',
       modal: false,
-      textarea: ''
+      textarea: '',
+      success: false
     }
     this.setTab = this.setTab.bind(this)
     this.onOpenModal = this.onOpenModal.bind(this)
     this.addMembers = this.addMembers.bind(this)
     this.renderInvite = this.renderInvite.bind(this)
+  }
+
+  componentDidMount () {
+    window.ipcRenderer.on('add-members-reply', (event: any, { response }: any) => {
+      this.setState({ success: true, modal: false, textarea: '' })
+      setTimeout(() => {
+        this.setState({ success: false })
+      }, 500)
+    })
   }
 
   setTab (tab: string) {
@@ -49,8 +60,13 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
   }
 
   addMembers () {
-    const list = this.state.textarea.replace(' ', ',').replace('\n',',')
-    console.log(list)
+    const { textarea } = this.state
+    const { session } = this.props
+    const list = textarea.toLowerCase().replace(/\n/g,',').replace(/\s/g,',').split(',')
+    window.ipcRenderer.send('add-members', {
+      session,
+      list
+    })
   }
 
   renderBacklog ({ email }: any, { backlog }: any) {
@@ -99,7 +115,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
 
   render () {
     const { user, session } = this.props
-    const { currentTab, modal } = this.state
+    const { currentTab, modal, success } = this.state
     return (
       <div className={'card'}>
         <div className={'card-title'}>
@@ -126,6 +142,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
           { currentTab === 'backlog' ? this.renderInvite(session) : undefined }
           { currentTab === 'team' ? this.renderInvite(session) : undefined }
         </Modal>
+        <SuccessMessage message={'session.invite.success'} show={success}/>
       </div>
     )
   }

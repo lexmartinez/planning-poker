@@ -44,6 +44,11 @@ module.exports = {
               event.sender.send('create-session-reply', {id:_id, sid, host, team, backlog});
             });
           });
+
+          ipcMain.on('add-members', (event, {session, list}) => {
+            console.log(list, session)
+            event.sender.send('add-members-reply', {response:true});
+          });
           
     }
 }

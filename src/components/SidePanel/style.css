@@ -159,6 +159,7 @@ body.session .modal-button {
     padding-right: 50px;
     font-weight: normal;
     text-decoration: none;
+    cursor: pointer;
     box-shadow: 0.5px 1px 2.5px 0px rgba(24,24,24,0.12);
 }
 

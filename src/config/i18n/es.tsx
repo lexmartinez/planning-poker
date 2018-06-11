@@ -40,9 +40,9 @@ const es = {
       'title': 'Invita a tu equipo',
       'paragraph': 'Digita los emails manualmente o copia y pega una lista de emails. ' +
                    'Separa los email con espacio y/o coma, o ingresa cada email en una línea nueva.',
-      'hint': 'Las direcciones duplicadas o inválidas serán removidas de la lista,' +
-              ' también si el miembro ya fué invitado.',
-      'button': 'Invitar Equipo'
+      'hint': 'Las direcciones duplicadas o inválidas serán ignoradas, también si el miembro ya fué invitado.',
+      'button': 'Invitar Equipo',
+      'success': 'Actualizado!'
     }
   }
 }
