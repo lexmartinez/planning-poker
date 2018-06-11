@@ -3,6 +3,7 @@ const {clipboard, ipcMain} = require('electron')
 const Session = require('./model')
 const randomstring = require('randomstring')
 const moment = require('moment')
+const validator = require("email-validator")
 
 const random = (length) => {
   return randomstring.generate({
@@ -46,8 +47,25 @@ module.exports = {
           });
 
           ipcMain.on('add-members', (event, {session, list}) => {
-            console.log(list, session)
-            event.sender.send('add-members-reply', {response:true});
+            const { team, sid } = session
+            let update = false
+            list.forEach((item) => {
+              if (team.indexOf(item) === -1 && validator.validate(item)) {
+                team.push(item)
+                update = true
+              }
+            })
+
+            if (update) {
+              Session.findOneAndUpdate({sid}, {team}, (error, response) => {
+                if (error) { 
+                  console.error(error) 
+                  event.sender.send('update-session-reply', {response: false});
+                } else {
+                  event.sender.send('update-session-reply', {response: true});
+                }
+              })
+            }
           });
           
     }
