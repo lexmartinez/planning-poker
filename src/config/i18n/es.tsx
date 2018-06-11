@@ -28,7 +28,7 @@ const es = {
     'sid': 'ID de Sesión',
     'copyClipboard': 'Copiar ID',
     'copySuccess': 'Copiado!',
-    'addMember': 'Agregar Miembro',
+    'addMember': 'Agregar Miembros',
     'team': 'Equipo',
     'backlog': 'Historias',
     'addStory': 'Agregar Historia',

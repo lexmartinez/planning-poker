@@ -36,10 +36,11 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     this.onOpenModal = this.onOpenModal.bind(this)
     this.addMembers = this.addMembers.bind(this)
     this.renderInvite = this.renderInvite.bind(this)
+    this.renderCreate = this.renderCreate.bind(this)
   }
 
   componentDidMount () {
-    window.ipcRenderer.on('add-members-reply', (event: any, { response }: any) => {
+    window.ipcRenderer.on('update-session-reply', (event: any, { response }: any) => {
       this.setState({ success: true, modal: false, textarea: '' })
       setTimeout(() => {
         this.setState({ success: false })
@@ -63,10 +64,12 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     const { textarea } = this.state
     const { session } = this.props
     const list = textarea.toLowerCase().replace(/\n/g,',').replace(/\s/g,',').split(',')
-    window.ipcRenderer.send('add-members', {
-      session,
-      list
-    })
+    if (list.length > 0) {
+      window.ipcRenderer.send('add-members', {
+        session,
+        list
+      })
+    }
   }
 
   renderBacklog ({ email }: any, { backlog }: any) {
@@ -113,6 +116,10 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     )
   }
 
+  renderCreate (session: any) {
+    return <div></div>
+  }
+
   render () {
     const { user, session } = this.props
     const { currentTab, modal, success } = this.state
@@ -139,7 +146,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
         </div>
         <Modal open={modal} onClose={this.onCloseModal} center={true} closeIconSize={20}
             styles={ modalStyle }>
-          { currentTab === 'backlog' ? this.renderInvite(session) : undefined }
+          { currentTab === 'backlog' ? this.renderCreate(session) : undefined }
           { currentTab === 'team' ? this.renderInvite(session) : undefined }
         </Modal>
         <SuccessMessage message={'session.invite.success'} show={success}/>
