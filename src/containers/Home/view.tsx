@@ -14,7 +14,6 @@ export default class Home extends React.Component <HomeProps, HomeState> {
       error: false,
       loading: false
     }
-    this.setLanguage = this.setLanguage.bind(this)
     this.startSession = this.startSession.bind(this)
     this.createSession = this.createSession.bind(this)
     this.handleChange = this.handleChange.bind(this)
@@ -51,15 +50,6 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     this.setState({ error, loading })
   }
 
-  setLanguage () {
-    const lang = i18n.t('home.lang.target')
-    i18n.changeLanguage(lang, (err: any, t: any) => {
-      if (err) return console.log('something went wrong loading', err)
-      window.localStorage.setItem(USER_LANG, lang)
-      this.props.setLanguage(lang)
-    })
-  }
-
   startSession () {
     if (this.state.sessionId && SID_REGEX.test(this.state.sessionId)) {
       const { email } = this.props.user
@@ -92,7 +82,7 @@ export default class Home extends React.Component <HomeProps, HomeState> {
             <div>
               {this.state.loading ? <Loading/> : undefined }
               <Header user={{ name, email, avatar }} history={this.props.history}
-                setLanguage={this.setLanguage} logout={this.props.logout}/>
+                setLanguage={this.props.setLanguage} logout={this.props.logout}/>
               <div className={'container'}>
                 <div className={'card-home card-white'}>
                   <div>

@@ -18,6 +18,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     this.showMenu = this.showMenu.bind(this)
     this.closeMenu = this.closeMenu.bind(this)
     this.logout = this.logout.bind(this)
+    this.setLanguage = this.setLanguage.bind(this)
     this.copyToClipboard = this.copyToClipboard.bind(this)
   }
 
@@ -50,6 +51,15 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
     this.props.history.push('/login')
   }
 
+  setLanguage () {
+    const lang = i18n.t('home.lang.target')
+    i18n.changeLanguage(lang, (err: any, t: any) => {
+      if (err) return console.log('something went wrong loading', err)
+      window.localStorage.setItem(USER_LANG, lang)
+      this.props.setLanguage(lang)
+    })
+  }
+
   about () {
     window.ipcRenderer.send('about-dialog')
   }
@@ -60,7 +70,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
   }
 
   render () {
-    const { user, session, setLanguage } = this.props
+    const { user, session } = this.props
     const { showMenu, isCopying } = this.state
     return (
       <div className={'navbar'}>
@@ -86,7 +96,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
               showMenu ?
                 <div className={'dropdown-content open'}>
                   <a onClick={this.about}>{i18n.t('home.about')} {APP_NAME}</a>
-                  <a onClick={setLanguage}>{i18n.t('home.lang.label')} <b>
+                  <a onClick={this.setLanguage}>{i18n.t('home.lang.label')} <b>
                     {i18n.t('home.lang.targetName')}</b></a>
                   <a onClick={this.logout}>{i18n.t('home.logout')}</a>
                 </div> : undefined
