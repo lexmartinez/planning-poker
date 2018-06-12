@@ -14,13 +14,13 @@ body.session .container {
 }
 
 body.session .main-panel{
-    width: 70%;
+    width: 65%;
     height: 100vh;
     float: left;
 }
 
 body.session .side-panel{
-    width: 30%;
+    width: 35%;
     height: 100vh;
     float: right;
     display: flex;

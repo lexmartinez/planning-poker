@@ -89,7 +89,18 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     if (!backlog || backlog.length === 0) {
       return <EmptyMessage icon={'list'} message={'session.emptyBacklog'} hint={'session.hintBacklog'}/>
     }
-    return undefined
+    const items = backlog.map((story: any) =>
+        <li className={'story'} key={story}>
+        <span>
+          <div className={'story-icon'}>
+            <Icon type ={'file-text'} size={'20'} color={'#3b3e69'}/>
+          </div> {story}</span>
+          <div className={'story-trash'}>
+            <a><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
+           </div>
+        </li>
+    )
+    return (<ul className={'story-list'}>{items}</ul>)
   }
 
   renderTeam ({ email }: any, { team, host }: any) {
