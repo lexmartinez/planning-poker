@@ -1,6 +1,7 @@
 'use strict'
 const {clipboard, ipcMain} = require('electron')
 const Session = require('./model')
+const sync = require('../sync')
 const randomstring = require('randomstring')
 const moment = require('moment')
 const validator = require("email-validator")
@@ -10,6 +11,16 @@ const random = (length) => {
     length,
     capitalization: 'uppercase'
   })
+}
+
+const onSessionUpdated = (error, response) => {
+  if (error) { 
+    console.error(error) 
+    event.sender.send('update-session-reply', {response: false});
+  } else {
+    event.sender.send('update-session-reply', {response: true});
+    sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+  }
 }
 
 module.exports = {
@@ -49,6 +60,7 @@ module.exports = {
           ipcMain.on('add-members', (event, {session, list}) => {
             const { team, sid } = session
             let update = false
+
             list.forEach((item) => {
               if (team.indexOf(item) === -1 && validator.validate(item)) {
                 team.push(item)
@@ -56,17 +68,17 @@ module.exports = {
               }
             })
 
-            if (update) {
-              Session.findOneAndUpdate({sid}, {team}, (error, response) => {
-                if (error) { 
-                  console.error(error) 
-                  event.sender.send('update-session-reply', {response: false});
-                } else {
-                  event.sender.send('update-session-reply', {response: true});
-                }
-              })
-            }
+            if (update) Session.findOneAndUpdate({sid}, {team}, onSessionUpdated)
+            
           });
-          
+
+          ipcMain.on('add-stories', (event, {session, stories}) => {
+            const { backlog, sid } = session
+            backlog = backlog.concat(stories)
+            /*stories.forEach((item) => {
+                backlog.push(item)
+            })*/
+            Session.findOneAndUpdate({sid}, {backlog}, onSessionUpdated)
+          });
     }
 }
