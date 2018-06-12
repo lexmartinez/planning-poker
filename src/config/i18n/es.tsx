@@ -43,6 +43,13 @@ const es = {
       'hint': 'Las direcciones duplicadas o inválidas serán ignoradas, también si el miembro ya fué invitado.',
       'button': 'Invitar Equipo',
       'success': 'Actualizado!'
+    },
+    story: {
+      'title': 'Agregar Historias',
+      'paragraph': 'Ingresa las historias como texto manualment o copia y pega una lista de historias. ' +
+                   'Separa cada historia de usuario con una nueva línea.',
+      'button': 'Agregar Historias',
+      'success': 'Creadas!'
     }
   }
 }

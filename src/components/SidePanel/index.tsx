@@ -35,6 +35,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     this.setTab = this.setTab.bind(this)
     this.onOpenModal = this.onOpenModal.bind(this)
     this.addMembers = this.addMembers.bind(this)
+    this.addStories = this.addStories.bind(this)
     this.renderInvite = this.renderInvite.bind(this)
     this.renderCreate = this.renderCreate.bind(this)
   }
@@ -68,6 +69,18 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
       window.ipcRenderer.send('add-members', {
         session,
         list
+      })
+    }
+  }
+
+  addStories () {
+    const { textarea } = this.state
+    const { session } = this.props
+    const stories = (textarea.match(/[^\r\n]+/g)) || []
+    if (stories.length > 0) {
+      window.ipcRenderer.send('add-stories', {
+        session,
+        stories
       })
     }
   }
@@ -117,7 +130,19 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
   }
 
   renderCreate (session: any) {
-    return <div></div>
+    return (
+      <div>
+        <h2 className={'modal-title'}>{i18n.t('session.story.title')}</h2>
+        <div className={'modal-line'}/>
+        <p className={'modal-paragraph'}>{i18n.t('session.story.paragraph')}</p>
+        <textarea rows={10} className={'modal-textarea'}
+          onChange={(event) => { this.setState({ textarea: event.target.value }) }} ></textarea>
+          <p className={'modal-hint'}></p>
+        <div className={'modal-button-container'}>
+          <a onClick={this.addStories} className={'modal-button'}>{i18n.t('session.story.button')}</a>
+        </div>
+      </div>
+    )
   }
 
   render () {
@@ -129,7 +154,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
           <ul className={'card-tabs'}>
             <li><a className={currentTab === 'backlog' ? 'active' : undefined}
                         onClick={() => { this.setTab('backlog') } }>{i18n.t('session.backlog')}
-                              {session.backlog.length > 0 ? `(${session.backlog.length})` : undefined}</a></li>
+                              {session.backlog.length > 0 ? ` (${session.backlog.length})` : undefined}</a></li>
             <li><a className={currentTab === 'team' ? 'active' : undefined}
                         onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
             <li className={'right-item'}>
@@ -149,7 +174,8 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
           { currentTab === 'backlog' ? this.renderCreate(session) : undefined }
           { currentTab === 'team' ? this.renderInvite(session) : undefined }
         </Modal>
-        <SuccessMessage message={'session.invite.success'} show={success}/>
+        <SuccessMessage message={currentTab === 'backlog' ? 'session.story.success' : 'session.invite.success'}
+          show={success}/>
       </div>
     )
   }

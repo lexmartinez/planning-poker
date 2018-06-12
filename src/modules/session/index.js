@@ -13,16 +13,6 @@ const random = (length) => {
   })
 }
 
-const onSessionUpdated = (error, response) => {
-  if (error) { 
-    console.error(error) 
-    event.sender.send('update-session-reply', {response: false});
-  } else {
-    event.sender.send('update-session-reply', {response: true});
-    sync.emit(sid, {type: sync.types.SESSION_UPDATED})
-  }
-}
-
 module.exports = {
     init: () => {
         ipcMain.on('session-auth', (event, arg) => {
@@ -68,17 +58,30 @@ module.exports = {
               }
             })
 
-            if (update) Session.findOneAndUpdate({sid}, {team}, onSessionUpdated)
+            if (update) Session.findOneAndUpdate({sid}, {team}, (error, response) => {
+              if (error) { 
+                console.error(error) 
+                event.sender.send('update-session-reply', {response: false});
+              } else {
+                event.sender.send('update-session-reply', {response: true});
+                sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+              }
+            })
             
           });
 
           ipcMain.on('add-stories', (event, {session, stories}) => {
-            const { backlog, sid } = session
-            backlog = backlog.concat(stories)
-            /*stories.forEach((item) => {
-                backlog.push(item)
-            })*/
-            Session.findOneAndUpdate({sid}, {backlog}, onSessionUpdated)
+            const { sid } = session
+            let backlog = session.backlog.concat(stories)
+            Session.findOneAndUpdate({sid}, {backlog}, (error, response) => {
+              if (error) { 
+                console.error(error) 
+                event.sender.send('update-session-reply', {response: false});
+              } else {
+                event.sender.send('update-session-reply', {response: true});
+                sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+              }
+            })
           });
     }
 }

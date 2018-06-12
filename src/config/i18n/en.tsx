@@ -43,6 +43,13 @@ const en = {
       'hint': 'Duplicate or invalid addresses will be ignored, also if the member already was invited',
       'button': 'Invite Team',
       'success': 'Updated!'
+    },
+    story: {
+      'title': 'Add Stories',
+      'paragraph': 'Enter stories as text manually or copy paste a list of stories. ' +
+                   'Please separate each user story with a new line.',
+      'button': 'Add Stories',
+      'success': 'Created!'
     }
   }
 }
