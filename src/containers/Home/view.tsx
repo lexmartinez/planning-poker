@@ -40,17 +40,15 @@ export default class Home extends React.Component <HomeProps, HomeState> {
         this.props.setSession(session)
         this.props.history.push(`/session/${this.state.sessionId}`)
       } else {
+        // TODO: HANDLE THIS ERROR!
         alert('error')
         // this.props.setError(true)
       }
     })
   }
 
-  componentWillReceiveProps (nextProps: any) {
-    this.setState({
-      error: nextProps.error,
-      loading: nextProps.loading
-    })
+  componentWillReceiveProps ({ error, loading }: any) {
+    this.setState({ error, loading })
   }
 
   setLanguage () {

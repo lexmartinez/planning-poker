@@ -57,15 +57,8 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     }
   }
 
-  componentWillReceiveProps (nextProps: any) {
-    if ((nextProps.isAuthenticated && nextProps.user) || nextProps.error || nextProps.loading) {
-      this.setState({
-        user: nextProps.user,
-        isAuthenticated: nextProps.isAuthenticated,
-        error: nextProps.error,
-        loading: nextProps.loading
-      })
-    }
+  componentWillReceiveProps ({ isAuthenticated, user, error, loading }: any) {
+    this.setState({ user, isAuthenticated, error, loading })
   }
 
   componentDidUpdate () {
@@ -84,6 +77,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
   }
 
   render () {
+    const { loading, error } = this.state
     const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
       document.body.classList.remove('login')
@@ -92,11 +86,11 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     document.body.classList.add('login')
     return (
         <div className={'wrapper'}>
-            {this.state.loading ? <Loading/> : undefined }
+            {loading ? <Loading/> : undefined }
             <img src={require('../../assets/images/cards.svg')} width={'90'} />
             <h1 className={'logo-title'}>{APP_NAME}</h1>
             <h2 className={'logo-subtitle'}>A Planning Poker Tool</h2>
-            { this.state.error ? <p>{`${this.state.error}`}</p> : undefined }
+            { error ? <p>{`${error}`}</p> : undefined }
             <div className={'login-buttons'}>
               <div>
                   <a href={'#'} className={'button'} onClick={this.google}>
