@@ -28,7 +28,7 @@ const buildMenu = (lang) => {
           label: labels.global.about,
           submenu: [
             {
-              label: 'About Planify',
+              label: labels.main.about,
               click: about
             },
             {
@@ -42,12 +42,12 @@ const buildMenu = (lang) => {
                   type:'separator'
                 },*/
             {
-              label: 'Hide Planify',
+              label: labels.main.hide,
               click: app.hide,
               accelerator: 'CommandOrControl+H'
             },
             {
-              label: 'Quit Planify',
+              label: labels.main.quit,
               role: 'quit',
               accelerator: 'CommandOrControl+Q'
             }
@@ -56,13 +56,13 @@ const buildMenu = (lang) => {
         {
           label: labels.global.edit,
           submenu: [
-            { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
-            { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { label: labels.edit.undo, accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+            { label: labels.edit.redo, accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
             { type: "separator" },
-            { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
-            { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
-            { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
-            { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+            { label: labels.edit.cut, accelerator: "CmdOrCtrl+X", selector: "cut:" },
+            { label: labels.edit.copy, accelerator: "CmdOrCtrl+C", selector: "copy:" },
+            { label: labels.edit.paste, accelerator: "CmdOrCtrl+V", selector: "paste:" },
+            { label: labels.edit.select, accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
           ]
         }
       ])
