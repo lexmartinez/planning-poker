@@ -57,6 +57,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
       if (err) return console.log('something went wrong loading', err)
       window.localStorage.setItem(USER_LANG, lang)
       this.props.setLanguage(lang)
+      window.ipcRenderer.send('set-language', lang)
     })
   }
 

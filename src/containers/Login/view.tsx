@@ -24,6 +24,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       i18n.changeLanguage(lang, (err: any, t: any) => {
         if (err) return console.log('something went wrong loading', err)
         this.props.setLanguage(lang)
+        window.ipcRenderer.send('set-language', lang)
       })
     } else {
       window.localStorage.setItem(USER_LANG, i18n.language)
