@@ -21,8 +21,12 @@ module.exports = {
             copy: 'Copiar',
             paste: 'Pegar',
             select: 'Seleccionar todo'
-        }
-        
+        },
+        help: {
+            issue: 'Notificar Error',
+            changelog: 'Histórico de Cambios',
+            wiki: 'Centro de Ayuda'
+        }  
     },
     en: {
         global: {
@@ -46,6 +50,11 @@ module.exports = {
             copy: 'Copiar',
             paste: 'Paste',
             select: 'Select All'
+        },
+        help: {
+            issue: 'Report an Issue ...',
+            changelog: 'Release Notes',
+            wiki: 'Planify Help'
         }
     }
 }

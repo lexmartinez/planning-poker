@@ -1,7 +1,7 @@
 'use strict'
 
 const electron = require('electron')
-const { app, BrowserWindow, ipcMain } = electron
+const { app, BrowserWindow, ipcMain, shell } = electron
 const path = require('path');
 const translations = require('./labels')
 const openAboutWindow = require('about-window').default;
@@ -18,6 +18,18 @@ const about = () => {
       bug_report_url: 'https://github.com/lexmartinez/planning-poker/issues',
       homepage: 'https://github.com/lexmartinez/planning-poker',
      })
+}
+
+const issue = () => {
+  shell.openExternal('https://github.com/lexmartinez/planning-poker/issues/new')
+}
+
+const wiki = () => {
+  shell.openExternal('https://github.com/lexmartinez/planning-poker/wiki')
+}
+
+const changelog = () => {
+  shell.openExternal('https://github.com/lexmartinez/planning-poker/blob/master/CHANGELOG.md')
 }
 
 const setLanguage = (lang, win) => {
@@ -95,11 +107,20 @@ const buildMenu = (lang, win, loggedIn) => {
           submenu: [
             { label: labels.edit.undo, accelerator: "CmdOrCtrl+Z", selector: "undo:" },
             { label: labels.edit.redo, accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
-            { type: "separator" },
+            { type: 'separator' },
             { label: labels.edit.cut, accelerator: "CmdOrCtrl+X", selector: "cut:" },
             { label: labels.edit.copy, accelerator: "CmdOrCtrl+C", selector: "copy:" },
             { label: labels.edit.paste, accelerator: "CmdOrCtrl+V", selector: "paste:" },
             { label: labels.edit.select, accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+          ]
+        },
+        {
+          label: labels.global.help,
+          submenu: [
+            { label: labels.help.issue, click: issue, accelerator: 'CommandOrControl+Shift+I'},
+            { label: labels.help.changelog, click: changelog},
+            { type: 'separator' },
+            { label: labels.help.wiki, click: wiki }
           ]
         }
       ])
