@@ -23,6 +23,8 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     document.body.classList.add('home')
     document.body.classList.remove('login')
 
+    window.ipcRenderer.send('set-language', { lang: i18n.language, loggedIn: true })
+
     window.ipcRenderer.on('session-auth-reply', (event: any, { response }: any) => {
       this.props.setLoading(false)
       if (response) {

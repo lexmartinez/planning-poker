@@ -34,7 +34,7 @@ const createWindow = () => {
           slashes: true
         });
 
-    modules.menu.setup()
+    modules.menu.setup(mainWindow)
     mainWindow.loadURL(startUrl)
 
     mainWindow.on('closed', () => {

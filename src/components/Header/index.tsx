@@ -28,6 +28,14 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
         this.setState({ isCopying: false })
       }, 500)
     })
+
+    window.ipcRenderer.on('set-language-main', (event: any, { lang }: any) => {
+      this.setLanguage()
+    })
+
+    window.ipcRenderer.on('logout-main', (event: any) => {
+      this.logout()
+    })
   }
 
   showMenu () {
@@ -57,7 +65,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
       if (err) return console.log('something went wrong loading', err)
       window.localStorage.setItem(USER_LANG, lang)
       this.props.setLanguage(lang)
-      window.ipcRenderer.send('set-language', lang)
+      window.ipcRenderer.send('set-language', { lang, loggedIn: true })
     })
   }
 

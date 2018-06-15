@@ -10,7 +10,7 @@ const en = {
     lang: {
       'label': 'Switch Language to',
       'target': 'es',
-      'targetName': 'Spanish'
+      'targetName': 'Spanish (Español)'
     },
     join: {
       'title': 'Join a Session',

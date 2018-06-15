@@ -10,7 +10,7 @@ const es = {
     lang: {
       'label': 'Cambiar Idioma a',
       'target': 'en',
-      'targetName': 'Inglés'
+      'targetName': 'Inglés (English)'
     },
     join: {
       'title': 'Unirse a una Sesión',

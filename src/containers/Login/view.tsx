@@ -24,7 +24,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       i18n.changeLanguage(lang, (err: any, t: any) => {
         if (err) return console.log('something went wrong loading', err)
         this.props.setLanguage(lang)
-        window.ipcRenderer.send('set-language', lang)
+        window.ipcRenderer.send('set-language', { lang })
       })
     } else {
       window.localStorage.setItem(USER_LANG, i18n.language)
@@ -53,6 +53,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
     if (token && token !== '') {
       const provider = window.localStorage.getItem(OAUTH_PROVIDER)
       this.props.userInfo(token, provider)
+      window.ipcRenderer.send('set-language', { lang: i18n.language, loggedIn: true })
     } else {
       document.body.classList.add('login')
     }

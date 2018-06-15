@@ -20,10 +20,17 @@ const about = () => {
      })
 }
 
-const buildMenu = (lang) => {
-  const labels = translations[lang || 'en']
+const setLanguage = (lang, win) => {
+  win.webContents.send('set-language-main', {lang})
+}
 
-      const menu = electron.Menu.buildFromTemplate([
+const logout = (win, lang) => {
+  win.webContents.send('logout-main')
+}
+
+const buildMenu = (lang, win, loggedIn) => {
+  const labels = translations[lang || 'en']
+  const menu = electron.Menu.buildFromTemplate([
         {
           label: labels.global.about,
           submenu: [
@@ -32,15 +39,45 @@ const buildMenu = (lang) => {
               click: about
             },
             {
-                  type:'separator'
+              type:'separator'
             },
-                /*{
-                  label: 'Settings...',
-                  click: () => about,
-                  accelerator: 'CommandOrControl+.'
-                },{
-                  type:'separator'
-                },*/
+            {
+              label: labels.main.language,
+              submenu: [
+                { 
+                  label: labels.main.spanish, 
+                  checked: (lang === 'es'), 
+                  type: (lang === 'es') ? 'checkbox' : 'normal',
+                  enabled: (lang !== 'es'),
+                  click: () => {
+                    setLanguage('es', win)
+                  }
+                },
+                { 
+                  label: labels.main.english, 
+                  checked: (!lang || lang === 'en'), 
+                  type: (!lang || lang === 'en') ? 'checkbox' : 'normal',
+                  enabled: (!lang) ? false : (lang !== 'en'),
+                  click: () => {
+                    setLanguage('en', win)
+                  }
+                },
+              ]
+            },
+            {
+              type:'separator'
+            },
+            {
+              label: labels.main.logout,
+              click: () => {
+                logout(win, (lang||'en'))
+              },
+              accelerator: 'CommandOrControl+Shift+W',
+              enabled: loggedIn ? true : false
+            },
+            {
+              type:'separator'
+            },
             {
               label: labels.main.hide,
               click: app.hide,
@@ -66,18 +103,18 @@ const buildMenu = (lang) => {
           ]
         }
       ])
-      electron.Menu.setApplicationMenu(menu)
+  electron.Menu.setApplicationMenu(menu)
 }
 
 module.exports = {
-    setup: () => {
-      buildMenu();
+    setup: (win) => {
+      buildMenu('en', win);
       ipcMain.on('about-dialog', (event, arg) => {
         about();
       });
 
-      ipcMain.on('set-language', (event, arg) => {
-        buildMenu(arg);
+      ipcMain.on('set-language', (event, {lang, loggedIn}) => {
+        buildMenu(lang, win, loggedIn);
       });
     }
 }
