@@ -49,6 +49,10 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       this.setUserData(access_token, 'google')
     })
 
+    window.ipcRenderer.on('set-language-main', (event: any, { lang }: any) => {
+      this.setLanguage()
+    })
+
     const token = window.localStorage.getItem(OAUTH_TOKEN)
     if (token && token !== '') {
       const provider = window.localStorage.getItem(OAUTH_PROVIDER)
@@ -68,6 +72,16 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       document.body.classList.remove('login')
       this.props.history.push('/')
     }
+  }
+
+  setLanguage () {
+    const lang = i18n.t('home.lang.target')
+    i18n.changeLanguage(lang, (err: any, t: any) => {
+      if (err) return console.log('something went wrong loading', err)
+      window.localStorage.setItem(USER_LANG, lang)
+      this.props.setLanguage(lang)
+      window.ipcRenderer.send('set-language', { lang, loggedIn: true })
+    })
   }
 
   github () {
