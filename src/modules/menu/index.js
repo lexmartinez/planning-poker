@@ -8,10 +8,10 @@ const openAboutWindow = require('about-window').default;
 
 const about = () => {
   openAboutWindow({
-      icon_path: path.join(__dirname, '../assets/images/cards.svg'),
+      icon_path: path.join(__dirname, '../../assets/images/cards.svg'),
       copyright: 'Copyright (c) 2018 Lex Martinez - MIT License',
       open_devtools: false,
-      css_path: path.join(__dirname, '../assets/about.css'),
+      css_path: path.join(__dirname, '../../assets/about.css'),
       product_name: 'Planify',
       description: 'A Planning Poker® Tool',
       win_options : {resizable: false, maximizable: false, titleBarStyle: 'hidden', frame: false},
