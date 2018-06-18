@@ -35,6 +35,8 @@ const createWindow = () => {
         });
 
     modules.menu.setup(mainWindow)
+    modules.session.init(mainWindow)
+    modules.oauth.init()
     mainWindow.loadURL(startUrl)
 
     mainWindow.on('closed', () => {
@@ -55,6 +57,3 @@ app.on('activate', () => {
         createWindow()
     }
 });
-
-modules.oauth.init();
-modules.session.init();

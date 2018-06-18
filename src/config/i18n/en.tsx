@@ -1,4 +1,8 @@
 const en = {
+  global: {
+    yes: 'Yes',
+    no: 'No'
+  },
   login: {
     'logIn': 'Login with'
   },
@@ -42,14 +46,16 @@ const en = {
                    'Please separate email addresses with a space and/or comma, or enter each email on a new line.',
       'hint': 'Duplicate or invalid addresses will be ignored, also if the member already was invited',
       'button': 'Invite Team',
-      'success': 'Updated!'
+      'success': 'Updated!',
+      'remove': 'Are you sure you want to remove this member?'
     },
     story: {
       'title': 'Add Stories',
       'paragraph': 'Enter stories as text manually or copy paste a list of stories. ' +
                    'Please separate each user story with a new line.',
       'button': 'Add Stories',
-      'success': 'Created!'
+      'success': 'Updated!',
+      'remove': 'Are you sure you want to remove this story?'
     }
   }
 }

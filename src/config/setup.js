@@ -24,7 +24,7 @@ module.exports = {
         }
     },
     mongodb: {
-        url: 'MONGO_USER',
+        url: 'MONGO_URL',
         model: 'MONGO_MODEL'
     }
 }

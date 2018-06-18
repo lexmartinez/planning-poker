@@ -1,4 +1,8 @@
 const es = {
+  global: {
+    yes: 'Si',
+    no: 'No'
+  },
   login: {
     'logIn': 'Ingresar con'
   },
@@ -42,14 +46,16 @@ const es = {
                    'Separa los email con espacio y/o coma, o ingresa cada email en una línea nueva.',
       'hint': 'Las direcciones duplicadas o inválidas serán ignoradas, también si el miembro ya fué invitado.',
       'button': 'Invitar Equipo',
-      'success': 'Actualizado!'
+      'success': 'Actualizado!',
+      'remove': 'Realmente deseas remover este miembro?'
     },
     story: {
       'title': 'Agregar Historias',
       'paragraph': 'Ingresa las historias como texto manualment o copia y pega una lista de historias. ' +
                    'Separa cada historia de usuario con una nueva línea.',
       'button': 'Agregar Historias',
-      'success': 'Creadas!'
+      'success': 'Actualizado!',
+      'remove': 'Realmente deseas eliminar esta historia?'
     }
   }
 }

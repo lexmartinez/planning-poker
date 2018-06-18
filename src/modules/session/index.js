@@ -1,10 +1,10 @@
 'use strict'
-const {clipboard, ipcMain} = require('electron')
+const {clipboard, ipcMain, dialog} = require('electron')
 const Session = require('./model')
 const sync = require('../sync')
 const randomstring = require('randomstring')
 const moment = require('moment')
-const validator = require("email-validator")
+const validator = require('email-validator')
 
 const random = (length) => {
   return randomstring.generate({
@@ -13,8 +13,17 @@ const random = (length) => {
   })
 }
 
+const confirmDialog = (win, labels, callback) => {
+  dialog.showMessageBox (win, {
+    type: 'question',
+    title: labels.title, message: labels.message,
+    buttons: [labels.no, labels.yes],
+    cancelId: 0, defaultId: 1
+  }, callback);
+}
+
 module.exports = {
-    init: () => {
+    init: (win) => {
         ipcMain.on('session-auth', (event, arg) => {
             const { sid, email } = arg;
             Session.findOne({sid}, (error, session) => {
@@ -80,6 +89,50 @@ module.exports = {
               } else {
                 event.sender.send('update-session-reply', {response: true});
                 sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+              }
+            })
+          });
+
+          ipcMain.on('remove-story', (event, {session, story, labels}) => {
+            const sid = session.sid
+            confirmDialog(win, labels, (response) => {
+              if(Boolean(response)) {
+                let i = session.backlog.indexOf(story);
+                let backlog = session.backlog;
+                if(i != -1) {
+                  backlog.splice(i, 1);
+                }
+                Session.findOneAndUpdate({sid}, {backlog}, (error, response) => {
+                  if (error) { 
+                    console.error(error) 
+                    event.sender.send('update-session-reply', {response: false});
+                  } else {
+                    event.sender.send('update-session-reply', {response: true});
+                    sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+                  }
+                })
+              }
+            })
+          });
+
+          ipcMain.on('remove-member', (event, {session, member, labels}) => {
+            const sid = session.sid
+            confirmDialog(win, labels, (response) => {
+              if(Boolean(response)) {
+                let i = session.team.indexOf(member);
+                let team = session.team;
+                if(i != -1) {
+                  team.splice(i, 1);
+                }
+                Session.findOneAndUpdate({sid}, {team}, (error, response) => {
+                  if (error) { 
+                    console.error(error) 
+                    event.sender.send('update-session-reply', {response: false});
+                  } else {
+                    event.sender.send('update-session-reply', {response: true});
+                    sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+                  }
+                })
               }
             })
           });

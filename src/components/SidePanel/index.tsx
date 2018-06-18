@@ -6,6 +6,7 @@ import './style.css'
 import { Tooltip } from 'react-tippy'
 import { EmptyMessage, SuccessMessage } from '../'
 import Modal from 'react-responsive-modal'
+import { APP_NAME } from '../../config/constants'
 
 const modalStyle = {
   closeButton: {
@@ -38,6 +39,8 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     this.addStories = this.addStories.bind(this)
     this.renderInvite = this.renderInvite.bind(this)
     this.renderCreate = this.renderCreate.bind(this)
+    this.removeMember = this.removeMember.bind(this)
+    this.removeStory = this.removeStory.bind(this)
   }
 
   componentDidMount () {
@@ -85,6 +88,34 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     }
   }
 
+  removeStory (story: any) {
+    const { session } = this.props
+    window.ipcRenderer.send('remove-story', {
+      story,
+      session,
+      labels: {
+        message: i18n.t('session.story.remove'),
+        title: APP_NAME,
+        yes: i18n.t('global.yes'),
+        no: i18n.t('global.no')
+      }
+    })
+  }
+
+  removeMember (member: any) {
+    const { session } = this.props
+    window.ipcRenderer.send('remove-member', {
+      member,
+      session,
+      labels: {
+        message: i18n.t('session.invite.remove'),
+        title: APP_NAME,
+        yes: i18n.t('global.yes'),
+        no: i18n.t('global.no')
+      }
+    })
+  }
+
   renderBacklog ({ email }: any, { backlog }: any) {
     if (!backlog || backlog.length === 0) {
       return <EmptyMessage icon={'list'} message={'session.emptyBacklog'} hint={'session.hintBacklog'}/>
@@ -96,7 +127,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
             <Icon type ={'file-text'} size={'20'} color={'#3b3e69'}/>
           </div> {story}</span>
           <div className={'story-trash'}>
-            <a><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
+            <a onClick={() => { this.removeStory(story) }}><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
            </div>
         </li>
     )
@@ -116,7 +147,8 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
           {
               member !== host && member !== email ?
               <div className={'member-trash'}>
-                <a><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
+                <a onClick={() => { this.removeMember(member) }}>
+                  <Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
               </div> : undefined
           }
         </li>
