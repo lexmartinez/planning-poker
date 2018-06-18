@@ -80,7 +80,7 @@ export default class Login extends React.Component<LoginProps, LoginState> {
       if (err) return console.log('something went wrong loading', err)
       window.localStorage.setItem(USER_LANG, lang)
       this.props.setLanguage(lang)
-      window.ipcRenderer.send('set-language', { lang, loggedIn: true })
+      window.ipcRenderer.send('set-language', { lang, loggedIn: false })
     })
   }
 
