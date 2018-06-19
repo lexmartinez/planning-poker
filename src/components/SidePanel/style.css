@@ -6,6 +6,7 @@ body.session .card {
     min-height: 470px;
     max-height: 470px;
     background: #fdfdfd;
+    padding-bottom: 10px;
 }
 
 body.session .card-title {
