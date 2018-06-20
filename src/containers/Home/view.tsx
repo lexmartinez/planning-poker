@@ -20,12 +20,6 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     this.startSession = this.startSession.bind(this)
     this.createSession = this.createSession.bind(this)
     this.handleChange = this.handleChange.bind(this)
-
-    const pusherClient = new Pusher('1f91e409eba4328fbbe6',{
-      cluster: 'us2'
-    })
-
-    setPusherClient(pusherClient)
   }
 
   componentDidMount () {
@@ -55,6 +49,15 @@ export default class Home extends React.Component <HomeProps, HomeState> {
         // this.props.setError(true)
       }
     })
+
+    window.ipcRenderer.on('pusher-data-reply', (event: any, { pusher }: any) => {
+      const pusherClient = new Pusher(pusher.key,{
+        cluster: pusher.cluster
+      })
+      setPusherClient(pusherClient)
+    })
+
+    window.ipcRenderer.send('pusher-data')
   }
 
   componentWillReceiveProps ({ error, loading }: any) {

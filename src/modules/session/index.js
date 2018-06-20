@@ -24,6 +24,8 @@ const confirmDialog = (win, labels, callback) => {
 
 module.exports = {
     init: (win) => {
+        sync.init();
+        
         ipcMain.on('session-auth', (event, arg) => {
             const { sid, email } = arg;
             Session.findOne({sid}, (error, session) => {

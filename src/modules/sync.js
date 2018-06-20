@@ -1,6 +1,7 @@
 'use strict'
 const Pusher = require('pusher');
 const setup = require('../config/setup.js');
+const {ipcMain} = require('electron')
 
 const types = {
     'SESSION_UPDATED': 'session-updated'
@@ -25,6 +26,13 @@ const templates = {
 module.exports = {
     emit: (sid, {type, data}) => {
         pusher.trigger(sid, type, templates.get(type,data));
+    },
+    init: () => {
+        ipcMain.on('pusher-data', (event, arg) => {
+            event.sender.send('pusher-data-reply', {
+                pusher: setup.pusher
+            });
+        });
     },
     types
 }
