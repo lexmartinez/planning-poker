@@ -5,6 +5,7 @@ import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 import 'react-tippy/dist/tippy.css'
 import { Tooltip } from 'react-tippy'
+import Pusher from 'react-pusher'
 
 export default class Session extends React.Component <SessionProps, SessionState> {
 
@@ -14,11 +15,30 @@ export default class Session extends React.Component <SessionProps, SessionState
       lang: i18n.language,
       session: this.props.session
     }
+
+    this.updateSession = this.updateSession.bind(this)
   }
 
   componentDidMount () {
     document.body.classList.add('session')
     document.body.classList.remove('home')
+
+    window.ipcRenderer.on('get-session-reply', (event: any, { session }: any) => {
+      if (session) {
+        this.props.setSession(session)
+      } else {
+        this.props.setError(true)
+      }
+    })
+
+  }
+
+  componentWillReceiveProps ({ session }: any) {
+    this.setState({ session })
+  }
+
+  updateSession () {
+    window.ipcRenderer.send('get-session', this.state.session.sid)
   }
 
   render () {
@@ -33,6 +53,11 @@ export default class Session extends React.Component <SessionProps, SessionState
                   <SidePanel session={this.state.session} user={this.props.user}/>
                 </div>
               </div>
+              <Pusher
+                channel={this.state.session.sid}
+                event={'session-updated'}
+                onUpdate={this.updateSession}
+              />
             </div>
     )
   }

@@ -6,6 +6,8 @@ interface SessionProps {
         email: string
     },
     setLanguage: any,
+    setSession: any,
+    setError: any,
     match: any,
     logout: any,
     session?: any

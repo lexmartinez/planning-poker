@@ -1,8 +1,12 @@
 'use strict'
+const Pusher = require('pusher');
+const setup = require('../config/setup.js');
 
 const types = {
     'SESSION_UPDATED': 'session-updated'
 }
+
+const pusher = new Pusher(setup.pusher);
 
 const templates = {
     get: (type, data) => {
@@ -20,7 +24,7 @@ const templates = {
 
 module.exports = {
     emit: (sid, {type, data}) => {
-        console.log(sid, templates.get(type,data))
+        pusher.trigger(sid, type, templates.get(type,data));
     },
     types
 }

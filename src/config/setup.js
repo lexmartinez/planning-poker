@@ -26,5 +26,12 @@ module.exports = {
     mongodb: {
         url: 'MONGO_URL',
         model: 'MONGO_MODEL'
+    },
+    pusher: {
+        appId: APP_ID,
+        key: APP_KEY,
+        secret: APP_SECRET,
+        cluster: APP_CLUSTER,
+        encrypted: true
     }
 }

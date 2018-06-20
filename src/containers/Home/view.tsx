@@ -4,6 +4,9 @@ import { USER_LANG, SID_REGEX } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
 import { format } from '../../services'
+import { setPusherClient } from 'react-pusher'
+import * as Pusher from 'pusher-js'
+
 export default class Home extends React.Component <HomeProps, HomeState> {
 
   constructor (props: HomeProps) {
@@ -17,6 +20,12 @@ export default class Home extends React.Component <HomeProps, HomeState> {
     this.startSession = this.startSession.bind(this)
     this.createSession = this.createSession.bind(this)
     this.handleChange = this.handleChange.bind(this)
+
+    const pusherClient = new Pusher('1f91e409eba4328fbbe6',{
+      cluster: 'us2'
+    })
+
+    setPusherClient(pusherClient)
   }
 
   componentDidMount () {

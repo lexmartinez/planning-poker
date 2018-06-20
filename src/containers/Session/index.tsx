@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Session from './view'
-import { setLanguage } from '../../actions/global'
+import { setLanguage, setSession, setError } from '../../actions/global'
 import { logout } from '../../actions/auth'
 import './style.css'
 
@@ -18,6 +18,12 @@ const mapDispatchToProps = (dispatch: any) => ({
   },
   logout: () => {
     dispatch(logout())
+  },
+  setSession: (session: any) => {
+    dispatch(setSession(session))
+  },
+  setError: (isError: boolean) => {
+    dispatch(setError(isError))
   }
 })
 

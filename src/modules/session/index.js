@@ -40,6 +40,18 @@ module.exports = {
               }
             });
           });
+
+          ipcMain.on('get-session', (event, sid) => {
+            Session.findOne({sid}, (error, session) => {
+              if (error) { 
+                console.error(error) 
+                event.sender.send('get-session-reply', {error});
+              } else { 
+                  const {_id, sid, host, team, backlog} = session
+                  event.sender.send('get-session-reply', {session: {id:_id, sid, host, team, backlog}});
+              }
+            });
+          });
         
           ipcMain.on('copy-sid', (event, arg) => {
             clipboard.writeText(arg)
