@@ -13,20 +13,19 @@ export default class VotePanel extends React.Component<VotePanelProps, VotePanel
 
   }
 
-  renderNoVoting () {
+  renderMessage (message: string) {
     return (
         <div className={'empty-v-container'}>
             <Icon type ={'layers'} size={'200'} color={'#ABABAB'}/>
-            <p className={'empty-v-message'}>{i18n.t('session.noVoting')}</p>
+            <p className={'empty-v-message'}>{message}</p>
         </div>
     )
   }
 
   render () {
     const { session } = this.props
-    console.log(session.backlog,session.current)
-    if (session.status === 'CREATED') {
-      return this.renderNoVoting()
+    if (session.status === 'CREATED' || session.status === 'COMPLETED') {
+      return this.renderMessage(session.status === 'CREATED' ? i18n.t('session.noVoting') : i18n.t('session.completed'))
     }
     return (
         <div className={'story-v-container'}>

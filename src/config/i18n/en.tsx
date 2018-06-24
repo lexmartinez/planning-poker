@@ -41,6 +41,7 @@ const en = {
     'hintTeam': 'Use plus (+) button to invite members.',
     'hintBacklog': 'Use plus (+) button to include new stories on your backlog.',
     'noVoting': 'The session haven\'t been started yet, waiting for host signal',
+    'completed': 'The session have been completed, voting isn\'t available anymore',
     invite: {
       'title': 'Invite your team',
       'paragraph': 'Enter emails manually or copy paste a list of emails. ' +

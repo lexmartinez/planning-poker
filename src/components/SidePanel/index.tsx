@@ -116,7 +116,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
     })
   }
 
-  renderBacklog ({ email }: any, { backlog }: any) {
+  renderBacklog ({ email }: any, { backlog, status }: any) {
     if (!backlog || backlog.length === 0) {
       return <EmptyMessage icon={'list'} message={'session.emptyBacklog'} hint={'session.hintBacklog'}/>
     }
@@ -126,15 +126,18 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
           <div className={'story-icon'}>
             <Icon type ={'file-text'} size={'20'} color={'#3b3e69'}/>
           </div> {story}</span>
-          <div className={'story-trash'}>
-            <a onClick={() => { this.removeStory(story) }}><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
-           </div>
+          {
+            status !== 'COMPLETED' ?
+            <div className={'story-trash'}>
+              <a onClick={() => { this.removeStory(story) }}><Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
+            </div> : undefined
+          }
         </li>
     )
     return (<ul className={'story-list'}>{items}</ul>)
   }
 
-  renderTeam ({ email }: any, { team, host }: any) {
+  renderTeam ({ email }: any, { team, host, status }: any) {
     if (!team || (team.length === 1 && team[0] === host)) {
       return <EmptyMessage icon={'users'} message={'session.emptyTeam'} hint={'session.hintTeam'}/>
     }
@@ -145,7 +148,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
             <Icon type ={member === email ? 'user-check' : 'user'} size={'20'} color={'#3b3e69'}/>
           </div> {member}
           {
-              member !== host && member !== email ?
+              member !== host && member !== email && status !== 'COMPLETED' ?
               <div className={'member-trash'}>
                 <a onClick={() => { this.removeMember(member) }}>
                   <Icon type ={'trash-2'} size={'20'} color={'#3b3e69'}/></a>
@@ -191,6 +194,7 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
   render () {
     const { user, session } = this.props
     const { currentTab, modal, success } = this.state
+    const enabled = session.status !== 'COMPLETED'
     return (
       <div className={'card'}>
         <div className={'card-title'}>
@@ -200,12 +204,15 @@ export default class SidePanel extends React.Component<SidePanelProps, SidePanel
                               {session.backlog.length > 0 ? ` (${session.backlog.length})` : undefined}</a></li>
             <li><a className={currentTab === 'team' ? 'active' : undefined}
                         onClick={() => { this.setTab('team') } }>{i18n.t('session.team')}</a></li>
-            <li className={'right-item'}>
-              <Tooltip title={i18n.t(currentTab === 'backlog' ? 'session.addStory' : 'session.addMember')}
-                position={'bottom'}>
-                <a onClick={this.onOpenModal}><Icon type ={'plus'} size={'20'} color={'#ffffff'}/></a>
-              </Tooltip>
-            </li>
+            {
+              enabled ?
+              <li className={'right-item'}>
+                <Tooltip title={i18n.t(currentTab === 'backlog' ? 'session.addStory' : 'session.addMember')}
+                  position={'bottom'}>
+                  <a onClick={this.onOpenModal}><Icon type ={'plus'} size={'20'} color={'#ffffff'}/></a>
+                </Tooltip>
+              </li> : undefined
+            }
           </ul>
         </div>
         <div className={'card-content'}>
