@@ -9,7 +9,9 @@ const SessionSchema = new Schema({
   host: String,
   created: { type: Date, default: Date.now },
   team: Array,
-  backlog: Array
+  backlog: Array,
+  status: String,
+  current: Number
 })
 
 const Session = mongoose.model(setup.mongodb.model, SessionSchema)
