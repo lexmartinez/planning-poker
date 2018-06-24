@@ -40,6 +40,7 @@ const es = {
     'emptyBacklog': 'Sin historias aun',
     'hintTeam': 'Use el botón más (+) para invitar los miembros del equipo.',
     'hintBacklog': 'Use el botón más (+) para incluir nuevas historias en su backlog',
+    'noVoting': 'La sesión no ha iniciado aun, esperando por la señal del anfitrión',
     invite: {
       'title': 'Invita a tu equipo',
       'paragraph': 'Digita los emails manualmente o copia y pega una lista de emails. ' +

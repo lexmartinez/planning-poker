@@ -1,0 +1,60 @@
+.empty-v-container {
+    width: 100%;
+    display: block;
+    padding-top: 160px;
+    text-align: center;
+}
+
+.empty-v-message {
+    font-family: "Muli", sans-serif !important;
+    color: #9A9A9A;
+    font-size: 1.3em;
+    padding: 80px;
+    padding-top: 20px;
+}
+
+.story-v-container {
+    padding: 30px;
+    padding-top: 20px;
+}
+
+.story-v-title {
+    font-family: "Muli", sans-serif !important;
+    color: #515261;
+    font-size: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 100%; 
+    height: 1.2em; 
+    white-space: nowrap;
+}
+
+.deck-container {
+    display: inline-grid;
+    grid-column-gap: 40px;
+    grid-template-columns: auto auto auto auto;
+    padding: 30px;
+    padding-top: 5px;
+}
+
+.v-card {
+    height: 150px !important;
+    width: 100px !important;
+    box-shadow: 0px 0px 5px 3px rgba(48,49,58,0.07);
+    border-radius: 4px;
+    background: #fdfdfd;
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Muli", sans-serif !important;
+    color: #515261;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.v-card:hover {
+    background: #50548d;
+    color: #fdfdfd;
+}

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Header, SidePanel } from '../../components'
+import { Header, SidePanel, VotePanel } from '../../components'
 import { USER_LANG, OAUTH_PROVIDER, APP_NAME } from '../../config/constants'
 import Icon from '@oovui/react-feather-icons'
 import i18n from '../../config/i18n'
@@ -48,7 +48,9 @@ export default class Session extends React.Component <SessionProps, SessionState
               <Header user={{ name, email, avatar }} history={this.props.history}
                 setLanguage={this.props.setLanguage} logout={this.props.logout} session={this.state.session}/>
               <div className={'container'}>
-                <div className={'main-panel'}></div>
+                <div className={'main-panel'}>
+                  <VotePanel session={this.state.session} user={this.props.user}/>
+                </div>
                 <div className={'side-panel'}>
                   <SidePanel session={this.state.session} user={this.props.user}/>
                 </div>
