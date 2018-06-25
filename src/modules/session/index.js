@@ -175,16 +175,23 @@ module.exports = {
             if (!current) {
               voting[session.current] = []
             }
-            voting[session.current].push({...user, vote})
 
-            Session.findOneAndUpdate({sid}, {voting}, (error, response) => {
-              if (error) { 
-                console.error(error) 
-                event.sender.send('update-session-reply', {response: false});
-              } else {
-                sync.emit(sid, {type: sync.types.VOTE, data: { user , vote }})
-              }
+            let canAdd = true
+            voting[session.current].forEach((item) => {
+              if (item.email === user.email) { canAdd = false }
             })
+            if (canAdd) {
+              voting[session.current].push({...user, vote})
+
+              Session.findOneAndUpdate({sid}, {voting}, (error, response) => {
+                if (error) { 
+                  console.error(error) 
+                  event.sender.send('update-session-reply', {response: false});
+                } else {
+                  sync.emit(sid, {type: sync.types.VOTE, data: { user , vote }})
+                }
+              })
+            }
           });
     }
 }
