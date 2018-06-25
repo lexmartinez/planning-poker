@@ -49,7 +49,8 @@ To bundle code in production mode, run the command bellow, the default output di
 
 ### Screenshots
 
-![](https://github.com/lexmartinez/planning-poker/raw/master/screenshot.png)
+![](https://github.com/lexmartinez/planning-poker/raw/master/screenshots/screenshot-1.png)
+![](https://github.com/lexmartinez/planning-poker/raw/master/screenshots/screenshot-2.png)
 
 ### License
 
