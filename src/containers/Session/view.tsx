@@ -30,7 +30,6 @@ export default class Session extends React.Component <SessionProps, SessionState
         this.props.setError(true)
       }
     })
-
   }
 
   componentWillReceiveProps ({ session }: any) {

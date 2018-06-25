@@ -44,6 +44,7 @@ const es = {
     'completed': 'La sesión ha sido completada, la votación ya no está disponible',
     'confirmUpdate': 'Realmente deseas actualizar la sesión?',
     'statusValidation': 'Debe configurar el equipo e historias para iniciar la sesión',
+    'votes': 'Ha estimado',
     buttons: {
       'start': 'Iniciar Sesión',
       'end': 'Finalizar Sesión',

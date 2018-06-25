@@ -44,6 +44,7 @@ const en = {
     'completed': 'The session have been completed, voting isn\'t available anymore',
     'confirmUpdate': 'Are you sure you want to update this session?',
     'statusValidation': 'To start session, You must set up your team and stories',
+    'votes': 'Has estimated',
     buttons: {
       'start': 'Start Session',
       'end': 'End Session',

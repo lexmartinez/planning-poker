@@ -7,6 +7,8 @@ interface VotePanelProps {
     }
 }
 
-interface VotePanelState {
-    
+interface NotificationOptions {
+    body?: string,
+    icon?: string,
+    silent: boolean
 }
