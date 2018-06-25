@@ -1,6 +1,6 @@
 {
     "name": "planning-poker",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Planning Poker Desktop application built with Electron, React & Typescript",
     "main": "main.js",
     "scripts": {

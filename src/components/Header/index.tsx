@@ -96,7 +96,7 @@ export default class Header extends React.Component<HeaderProps, HeaderState> {
           }
           <div className={'avatar-container'}>
             <img src={ user.avatar } className={'avatar'}/>
-            <p className={'avatar-info'}>{i18n.t('home.hello')}, {user.name}</p>
+            <p className={'avatar-info'} onClick={this.showMenu}>{i18n.t('home.hello')}, {user.name}</p>
             <Tooltip title={i18n.t('home.menu')} distance={0}>
               <a className={'settings-btn'} onClick={this.showMenu}><i className={'fa fa-chevron-down'}></i></a>
             </Tooltip>
