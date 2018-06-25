@@ -29,11 +29,7 @@ export default class VotePanel extends React.Component<VotePanelProps, {}> {
     const { session } = this.props
     const voting = session.voting[session.current] || []
     return (
-        <div className={'story-v-container'}>
-            <Pusher
-                channel={session.sid}
-                event={'vote-event'}
-                onUpdate={this.handleVote}/>
+        <div>
             <p className={'story-v-title'}><b>{i18n.t('session.current')}: </b>{session.backlog[session.current]}</p>
             {
                 voting.map((vote: any) =>
@@ -90,22 +86,26 @@ export default class VotePanel extends React.Component<VotePanelProps, {}> {
       return this.renderMessage(session.status === 'CREATED' ? i18n.t('session.noVoting') : i18n.t('session.completed'))
     }
 
-    if (voted) return this.renderVotingTable()
-
     return (
         <div className={'story-v-container'}>
-            <p className={'story-v-title'}><b>{i18n.t('session.current')}: </b>{session.backlog[session.current]}</p>
-            <div className={'deck-container'}>
-                {
-                    fibo.map((card: any) =>
-                    <a className={'v-card'} key={card} onClick={() => { this.sendVote(card) }}>
-                        {
-                          card === 'X' ? <i className={'fa fa-coffee'}></i> :
-                          card === '?' ? <i className={'fa fa-question'}></i> : card
-                        }
-                    </a>)
-                }
-            </div>
+        {
+          voted ? this.renderVotingTable() :
+          <div>
+              <p className={'story-v-title'}><b>{i18n.t('session.current')}: </b>{session.backlog[session.current]}</p>
+              <div className={'deck-container'}>
+                  {
+                      fibo.map((card: any) =>
+                      <a className={'v-card'} key={card} onClick={() => { this.sendVote(card) }}>
+                          {
+                            card === 'X' ? <i className={'fa fa-coffee'}></i> :
+                            card === '?' ? <i className={'fa fa-question'}></i> : card
+                          }
+                      </a>)
+                  }
+              </div>
+          </div>
+        }
+
             <Pusher
                 channel={session.sid}
                 event={'vote-event'}
