@@ -23,6 +23,8 @@
             "main.js",
             "src/config/oauth.js",
             "src/modules/*.js",
+            "src/modules/*/*.js",
+            "src/config/setup.js",
             "src/assets/about.css",
             "src/assets/images/cards.svg",
             "build/*"
