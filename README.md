@@ -6,6 +6,9 @@
 
 **Planify:** Planning Poker® Desktop application built with Electron, React & Typescript
 
+![](https://github.com/lexmartinez/planning-poker/raw/master/screenshots/screenshot-1.png)
+![](https://github.com/lexmartinez/planning-poker/raw/master/screenshots/screenshot-2.png)
+
 ## Quick start
 
 ```bash
