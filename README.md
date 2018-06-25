@@ -6,8 +6,6 @@
 
 **Planify:** Planning Poker® Desktop application built with Electron, React & Typescript
 
-![](https://github.com/lexmartinez/planning-poker/raw/master/screenshot.png)
-
 ## Quick start
 
 ```bash
@@ -28,6 +26,7 @@ $ npm start
 
 * [Development](#development)
 * [Packaging](#packaging)
+* [Screenshots](#screenshots)
 * [License](#license)
 
 ### Development
@@ -47,6 +46,10 @@ The App uses GitHub and Google as OAuth providers, so in order to develop and bu
 To bundle code in production mode, run the command bellow, the default output directory is `/dist`
 
 * `npm run dist` or `yarn dist`
+
+### Screenshots
+
+![](https://github.com/lexmartinez/planning-poker/raw/master/screenshot.png)
 
 ### License
 
