@@ -45,6 +45,7 @@ const es = {
     'confirmUpdate': 'Realmente deseas actualizar la sesión?',
     'statusValidation': 'Debe configurar el equipo e historias para iniciar la sesión',
     'votes': 'Ha estimado',
+    'current': 'Historia Actual',
     buttons: {
       'start': 'Iniciar Sesión',
       'end': 'Finalizar Sesión',

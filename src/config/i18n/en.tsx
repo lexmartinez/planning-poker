@@ -45,6 +45,7 @@ const en = {
     'confirmUpdate': 'Are you sure you want to update this session?',
     'statusValidation': 'To start session, You must set up your team and stories',
     'votes': 'Has estimated',
+    'current': 'Current Story',
     buttons: {
       'start': 'Start Session',
       'end': 'End Session',

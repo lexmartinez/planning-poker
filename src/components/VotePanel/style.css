@@ -58,3 +58,26 @@
     background: #50548d;
     color: #fdfdfd;
 }
+
+body.session li.vote-item {
+    color: #353535;
+    background: #ffffff;
+    border-bottom: 1px solid #f2f2f2;
+    display: flex;
+    text-align: left;
+    padding-left: 20px;
+ }
+
+ .vote-data {
+    width: 82%;
+    margin-top: 20px
+ }
+
+ .vote-img {
+     margin-right: 30px;
+     margin-top: 20px
+ }
+
+ .vote-value {
+    font-size: 1.7em
+ }
