@@ -150,5 +150,22 @@ module.exports = {
               }
             })
           });
+
+          ipcMain.on('update-session', (event, {session, labels}) => {
+            const sid = session.sid
+            confirmDialog(win, labels, (response) => {
+              if(Boolean(response)) {
+                Session.findOneAndUpdate({sid}, session, (error, response) => {
+                  if (error) { 
+                    console.error(error) 
+                    event.sender.send('update-session-reply', {response: false});
+                  } else {
+                    event.sender.send('update-session-reply', {response: true});
+                    sync.emit(sid, {type: sync.types.SESSION_UPDATED})
+                  }
+                })
+              }
+            })
+          });
     }
 }

@@ -42,6 +42,13 @@ const es = {
     'hintBacklog': 'Use el botón más (+) para incluir nuevas historias en su backlog',
     'noVoting': 'La sesión no ha iniciado aun, esperando por la señal del anfitrión',
     'completed': 'La sesión ha sido completada, la votación ya no está disponible',
+    'confirmUpdate': 'Realmente deseas actualizar la sesión?',
+    'statusValidation': 'Debe configurar el equipo e historias para iniciar la sesión',
+    buttons: {
+      'start': 'Iniciar Sesión',
+      'end': 'Finalizar Sesión',
+      'next': 'Siguiente Historia'
+    },
     invite: {
       'title': 'Invita a tu equipo',
       'paragraph': 'Digita los emails manualmente o copia y pega una lista de emails. ' +

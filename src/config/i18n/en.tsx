@@ -42,6 +42,13 @@ const en = {
     'hintBacklog': 'Use plus (+) button to include new stories on your backlog.',
     'noVoting': 'The session haven\'t been started yet, waiting for host signal',
     'completed': 'The session have been completed, voting isn\'t available anymore',
+    'confirmUpdate': 'Are you sure you want to update this session?',
+    'statusValidation': 'To start session, You must set up your team and stories',
+    buttons: {
+      'start': 'Start Session',
+      'end': 'End Session',
+      'next': 'Next Story'
+    },
     invite: {
       'title': 'Invite your team',
       'paragraph': 'Enter emails manually or copy paste a list of emails. ' +

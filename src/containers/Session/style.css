@@ -28,3 +28,29 @@ body.session .side-panel{
     flex-direction: column;
     text-align: center;
 }
+
+body.session .side-buttons {
+    width: 90%;
+    margin-top:10px;
+}
+
+body.session .session-button {
+    color: #fff;
+    background: #515261;
+    border-radius: 5px;
+    height: 25px;
+    line-height: 25px;
+    padding: 9px;
+    font-weight: normal;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 0.5px 1px 2.5px 0px rgba(24,24,24,0.12);
+    display: flex !important;
+    margin-top:10px;
+    align-content: center;
+    justify-content: center;
+}
+
+body.session .session-button:hover {
+    background: #38383f;
+}
