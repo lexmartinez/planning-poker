@@ -30,6 +30,10 @@ export default class VotePanel extends React.Component<VotePanelProps, {}> {
     const voting = session.voting[session.current] || []
     return (
         <div className={'story-v-container'}>
+            <Pusher
+                channel={session.sid}
+                event={'vote-event'}
+                onUpdate={this.handleVote}/>
             <p className={'story-v-title'}><b>{i18n.t('session.current')}: </b>{session.backlog[session.current]}</p>
             {
                 voting.map((vote: any) =>
@@ -106,7 +110,7 @@ export default class VotePanel extends React.Component<VotePanelProps, {}> {
                 channel={session.sid}
                 event={'vote-event'}
                 onUpdate={this.handleVote}
-              />
+            />
         </div>
     )
   }
