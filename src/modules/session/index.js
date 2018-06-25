@@ -34,8 +34,8 @@ module.exports = {
                 event.sender.send('session-auth-reply', {response: false});
               } else { 
                 if (session && (session.team.indexOf(email) !== -1 || session.host === email)) {
-                  const {_id, sid, host, team, backlog, status, current} = session
-                  event.sender.send('session-auth-reply', {response: {id:_id, sid, host, team, backlog, status, current}});
+                  const {_id, sid, host, team, backlog, status, current, voting} = session
+                  event.sender.send('session-auth-reply', {response: {id:_id, sid, host, team, backlog, status, current, voting}});
                 } else {
                   event.sender.send('session-auth-reply', {response: false});
                 }
@@ -49,8 +49,8 @@ module.exports = {
                 console.error(error) 
                 event.sender.send('get-session-reply', {error});
               } else { 
-                  const {_id, sid, host, team, backlog, status, current} = session
-                  event.sender.send('get-session-reply', {session: {id:_id, sid, host, team, backlog, status, current}});
+                  const {_id, sid, host, team, backlog, status, current, voting} = session
+                  event.sender.send('get-session-reply', {session: {id:_id, sid, host, team, backlog, status, current, voting}});
               }
             });
           });
@@ -63,10 +63,10 @@ module.exports = {
           ipcMain.on('create-session', (event, host) => {
             const sid= `${random(4)}-${random(4)}-${random(2)}${moment().format('DD-MMYY')}`
             const team = [host]
-            const session = new Session({sid, host, team, backlog: [], status: 'CREATED', current: 0})
+            const session = new Session({sid, host, team, backlog: [], voting: [], status: 'CREATED', current: 0})
             session.save().then((response) => {
-              const {_id, sid, host, team, backlog, status, current} = response
-              event.sender.send('create-session-reply', {id:_id, sid, host, team, backlog, status, current});
+              const {_id, sid, host, team, backlog, status, current, voting} = response
+              event.sender.send('create-session-reply', {id:_id, sid, host, team, backlog, status, current, voting});
             });
           });
 
@@ -164,6 +164,25 @@ module.exports = {
                     sync.emit(sid, {type: sync.types.SESSION_UPDATED})
                   }
                 })
+              }
+            })
+          });
+
+          ipcMain.on('handle-vote', (event, {user, session, vote}) => {
+            const sid = session.sid
+            const voting = session.voting
+            const current = voting[session.current]
+            if (!current) {
+              voting[session.current] = []
+            }
+            voting[session.current].push({...user, vote})
+
+            Session.findOneAndUpdate({sid}, {voting}, (error, response) => {
+              if (error) { 
+                console.error(error) 
+                event.sender.send('update-session-reply', {response: false});
+              } else {
+                sync.emit(sid, {type: sync.types.VOTE, data: { user , vote }})
               }
             })
           });

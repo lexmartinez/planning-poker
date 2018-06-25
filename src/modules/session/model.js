@@ -11,7 +11,8 @@ const SessionSchema = new Schema({
   team: Array,
   backlog: Array,
   status: String,
-  current: Number
+  current: Number,
+  voting: Array
 })
 
 const Session = mongoose.model(setup.mongodb.model, SessionSchema)

@@ -4,7 +4,8 @@ const setup = require('../config/setup.js');
 const {ipcMain} = require('electron')
 
 const types = {
-    'SESSION_UPDATED': 'session-updated'
+    'SESSION_UPDATED': 'session-updated',
+    'VOTE': 'vote-event'
 }
 
 const pusher = new Pusher(setup.pusher);
@@ -14,6 +15,8 @@ const templates = {
         switch(type) {
             case types.SESSION_UPDATED:
                 return {type}
+            case types.VOTE:
+                return {type, data}
             default:
                 return {
                     type,
