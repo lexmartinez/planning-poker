@@ -2,7 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/lexmartinez/planning-poker/master.svg?style=for-the-badge)](https://travis-ci.org/lexmartinez/planning-poker)
 [![GitHub license](https://img.shields.io/github/license/lexmartinez/planning-poker.svg?style=for-the-badge)](https://github.com/lexmartinez/planning-poker/blob/master/LICENSE.md)
-[![Last version](https://img.shields.io/badge/version-v0.0.1-blue.svg?style=for-the-badge)](https://github.com/lexmartinez/planning-poker/blob/master/CHANGELOG.md)
+[![Last version](https://img.shields.io/badge/version-v0.0.2-blue.svg?style=for-the-badge)](https://github.com/lexmartinez/planning-poker/blob/master/CHANGELOG.md)
 
 **Planify:** Planning Poker® Desktop application built with Electron, React & Typescript
 
